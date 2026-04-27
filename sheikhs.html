@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="معلمات مقرأة غِنديات والتلاوات الصوتية – القراءات العشر">
+<title>المعلمات والتلاوات | مقرأة غِنديات</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+<style>
+.page-hero {
+  background: linear-gradient(160deg, #2A1A0E 0%, #3D2B1F 40%, #4A3020 100%);
+  padding: calc(var(--nav-h) + 80px) 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 3px solid rgba(197,160,89,.4);
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 8 L72 28 L72 52 L40 72 L8 52 L8 28Z' fill='none' stroke='rgba(197,160,89,0.15)' stroke-width='1'/%3E%3C/svg%3E");
+}
+.page-hero h1 { color: #FFFFFF; position: relative; text-shadow: 0 2px 20px rgba(0,0,0,.4); }
+.page-hero p  { color: rgba(255,255,255,.88); max-width: 600px; margin: 16px auto 0; position: relative; }
+
+/* مشغّل كبير */
+.audio-player-bar {
+  position: fixed;
+  bottom: 0; right: 0; left: 0;
+  z-index: 800;
+  background: linear-gradient(135deg, #2A1A0E, #1A0D08);
+  border-top: 2px solid rgba(197,160,89,.5);
+  padding: 12px 24px;
+  display: none;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 -8px 32px rgba(0,0,0,.5);
+}
+.audio-player-bar.active { display: flex; }
+.audio-player-bar .player-title-wrap { flex: 1; }
+.audio-player-bar .p-title { color: var(--gold-lighter); font-size: 1rem; font-weight: 700; }
+.audio-player-bar .p-sub   { color: rgba(255,255,255,.6); font-size: 0.82rem; }
+.audio-player-bar audio {
+  flex: 2;
+  height: 36px;
+  border-radius: 8px;
+  accent-color: var(--gold-primary);
+}
+.player-close {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  color: rgba(255,255,255,.6);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.player-close:hover { background: rgba(255,255,255,.2); color: #fff; }
+
+/* فلاتر */
+.filters-bar {
+  background: var(--cream-card);
+  border-radius: var(--radius-xl);
+  padding: 20px 28px;
+  box-shadow: var(--shadow-md);
+  border: 1.5px solid rgba(197,160,89,.25);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.filter-btn {
+  padding: 9px 22px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 700;
+  border: 1.5px solid rgba(197,160,89,.35);
+  background: transparent;
+  color: var(--text-medium);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--gold-gradient);
+  color: var(--brown-dark);
+  border-color: var(--gold-primary);
+  box-shadow: 0 4px 16px rgba(197,160,89,.4);
+  transform: translateY(-1px);
+}
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--cream-dark);
+  border: 1.5px solid rgba(197,160,89,.3);
+  border-radius: var(--radius-full);
+  padding: 9px 16px;
+  flex: 1;
+  max-width: 280px;
+}
+.search-input-wrap input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  width: 100%;
+}
+.search-input-wrap i { color: var(--gold-dark); }
+
+/* بطاقة معلمة مفصّلة */
+.sheikh-detail-card {
+  background: var(--cream-card);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1.5px solid rgba(197,160,89,.2);
+  transition: var(--transition);
+  margin-bottom: 32px;
+}
+.sheikh-detail-card:hover {
+  box-shadow: var(--shadow-gold-lg);
+  border-color: rgba(197,160,89,.55);
+  transform: translateY(-3px);
+}
+.sheikh-detail-header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+}
+.sheikh-detail-img {
+  height: 240px;
+  background: linear-gradient(135deg, var(--brown-dark), var(--olive-dark));
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.sheikh-detail-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.sheikh-detail-img .avatar-big {
+  font-size: 5rem;
+  color: rgba(197,160,89,.7);
+}
+.sheikh-detail-info {
+  padding: 28px;
+  border-bottom: 1.5px solid rgba(197,160,89,.18);
+}
+.sheikh-detail-info h3 {
+  font-family: 'Scheherazade New', serif;
+  font-size: 1.6rem;
+  color: var(--brown-dark);
+  margin-bottom: 4px;
+}
+.sheikh-spec {
+  color: var(--gold-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.sheikh-bio-text {
+  font-size: 0.92rem;
+  color: var(--text-medium);
+  line-height: 1.9;
+}
+
+/* قائمة التلاوات */
+.recitations-list {
+  padding: 20px 24px;
+}
+.recitations-list h4 {
+  font-size: 1rem;
+  color: var(--brown-dark);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.recitations-list h4 i { color: var(--gold-primary); }
+.rec-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background: var(--cream-primary);
+  border: 1.5px solid rgba(197,160,89,.15);
+  margin-bottom: 10px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.rec-item:hover {
+  background: rgba(197,160,89,.1);
+  border-color: rgba(197,160,89,.4);
+  transform: translateX(-2px);
+}
+.rec-item.playing {
+  background: linear-gradient(135deg, rgba(197,160,89,.18), rgba(92,107,44,.1));
+  border-color: var(--gold-primary);
+  box-shadow: 0 4px 16px rgba(197,160,89,.2);
+}
+.rec-play-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  color: var(--brown-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-gold);
+  transition: var(--transition);
+}
+.rec-play-btn:hover { transform: scale(1.1); }
+.rec-play-btn.playing { background: var(--olive-primary); color: #fff; }
+.rec-info { flex: 1; }
+.rec-name { font-size: 0.95rem; font-weight: 700; color: var(--brown-dark); }
+.rec-riwaya { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+.rec-no-audio {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* خريطة القراءات */
+.riwayat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+.riwaya-card {
+  background: var(--cream-card);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  text-align: center;
+  border: 1.5px solid rgba(197,160,89,.2);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  cursor: pointer;
+}
+.riwaya-card:hover, .riwaya-card.active {
+  border-color: var(--gold-primary);
+  background: rgba(197,160,89,.1);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(197,160,89,.3);
+}
+.riwaya-card .qari-name {
+  font-family: 'Scheherazade New', serif;
+  font-size: 1.1rem;
+  color: var(--brown-dark);
+  margin-bottom: 6px;
+}
+.riwaya-card .rawi-name { font-size: 0.82rem; color: var(--gold-primary); font-weight: 700; }
+
+@media (max-width: 768px) {
+  .sheikh-detail-header { grid-template-columns: 1fr; }
+  .sheikh-detail-img { height: 180px; }
+  .filters-bar { flex-direction: column; align-items: flex-start; }
+  .search-input-wrap { max-width: 100%; width: 100%; }
+  .audio-player-bar { flex-direction: column; gap: 8px; }
+  .audio-player-bar audio { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- شريط الإعلانات -->
+<div class="announcements-bar">
+  <div class="ticker">
+    <span class="ticker-item"><i class="fas fa-headphones"></i> استمعي إلى تلاوات معلماتنا المتخصصات</span>
+    <span class="ticker-item"><i class="fas fa-star"></i> مقرأة غِنديات – مكة المكرمة</span>
+    <span class="ticker-item"><i class="fas fa-headphones"></i> استمعي إلى تلاوات معلماتنا المتخصصات</span>
+    <span class="ticker-item"><i class="fas fa-star"></i> مقرأة غِنديات – مكة المكرمة</span>
+  </div>
+</div>
+
+<!-- شريط التنقل -->
+<nav class="navbar" id="mainNav">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="غِنديات" onerror="this.style.display='none'">
+      <div class="nav-logo-text">
+        <span class="brand"><span class="brand-ghan">غِنديات</span><span class="brand-dyat"> للقراءات</span></span>
+        <span class="brand-sub">مقرأة تعليم القراءات القرآنية</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="programs.html">البرامج</a></li>
+      <li><a href="sheikhs.html" class="active">المعلمات والتلاوات</a></li>
+      <li><a href="recitations.html">القراءات</a></li>
+      <li><a href="certificates.html">الشهادات</a></li>
+      <li><a href="contact.html">تواصل</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-envelope"></i> تواصل</a>
+      <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- هيرو الصفحة -->
+<div class="page-hero">
+  <div class="container">
+    <div class="hero-badge" style="justify-content:center;margin-bottom:16px">
+      <i class="fas fa-chalkboard-teacher"></i> المعلمات المتخصصات
+    </div>
+    <h1>معلمات مقرأة غِنديات</h1>
+    <div class="gold-divider"></div>
+    <p>نخبة مختارة من أفضل المعلمات في القراءات القرآنية والتجويد، اجتمعن ليقدّمن لكِ تجربة تعليمية لا مثيل لها</p>
+  </div>
+</div>
+
+<!-- المحتوى الرئيسي -->
+<section class="section">
+  <div class="container">
+
+    <!-- الفلاتر -->
+    <div class="filters-bar">
+      <div class="search-input-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="ابحثي عن معلمة..." id="searchInput" oninput="filterSheikhs(this.value)">
+      </div>
+      <button class="filter-btn active" onclick="setFilter('all',this)">الكل</button>
+      <button class="filter-btn" onclick="setFilter('قراءات',this)">القراءات</button>
+      <button class="filter-btn" onclick="setFilter('تجويد',this)">التجويد</button>
+      <button class="filter-btn" onclick="setFilter('اجازة',this)">الإجازة</button>
+    </div>
+
+    <!-- قائمة المعلمات -->
+    <div id="sheikhsList">
+      <div style="text-align:center;padding:60px">
+        <i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--gold-primary)"></i>
+        <p style="margin-top:16px">جاري تحميل المعلمات...</p>
+      </div>
+    </div>
+
+    <!-- خريطة القراءات العشر -->
+    <div class="section-header" style="margin-top:64px">
+      <div class="section-label"> القراءات العشر المتواترة</div>
+      <h2>خريطة القراء والروايات</h2>
+      <div class="gold-divider"></div>
+      <p>ندرّس القراءات العشر كاملة – انقري على أي قارئ لرؤية التلاوات المتاحة</p>
+    </div>
+    <div class="riwayat-grid" id="riwayatGrid">
+      <div class="riwaya-card" onclick="filterByRiwaya('نافع','قالون')">
+        <div class="qari-name">نافع المدني</div>
+        <div class="rawi-name">رواية قالون</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('نافع','ورش')">
+        <div class="qari-name">نافع المدني</div>
+        <div class="rawi-name">رواية ورش</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('ابن كثير','البزي')">
+        <div class="qari-name">ابن كثير المكي</div>
+        <div class="rawi-name">رواية البزي</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('ابن كثير','قنبل')">
+        <div class="qari-name">ابن كثير المكي</div>
+        <div class="rawi-name">رواية قنبل</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('أبو عمرو','الدوري')">
+        <div class="qari-name">أبو عمرو البصري</div>
+        <div class="rawi-name">رواية الدوري</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('أبو عمرو','السوسي')">
+        <div class="qari-name">أبو عمرو البصري</div>
+        <div class="rawi-name">رواية السوسي</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('ابن عامر','هشام')">
+        <div class="qari-name">ابن عامر الشامي</div>
+        <div class="rawi-name">رواية هشام</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('ابن عامر','ابن ذكوان')">
+        <div class="qari-name">ابن عامر الشامي</div>
+        <div class="rawi-name">رواية ابن ذكوان</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('عاصم','حفص')">
+        <div class="qari-name">عاصم الكوفي</div>
+        <div class="rawi-name">رواية حفص</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('عاصم','شعبة')">
+        <div class="qari-name">عاصم الكوفي</div>
+        <div class="rawi-name">رواية شعبة</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('حمزة','خلف')">
+        <div class="qari-name">حمزة الكوفي</div>
+        <div class="rawi-name">رواية خلف</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('حمزة','خلاد')">
+        <div class="qari-name">حمزة الكوفي</div>
+        <div class="rawi-name">رواية خلاد</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('الكسائي','الليث')">
+        <div class="qari-name">الكسائي</div>
+        <div class="rawi-name">رواية الليث</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('الكسائي','الدوري')">
+        <div class="qari-name">الكسائي</div>
+        <div class="rawi-name">رواية الدوري</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('أبو جعفر','ابن وردان')">
+        <div class="qari-name">أبو جعفر</div>
+        <div class="rawi-name">رواية ابن وردان</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('أبو جعفر','ابن جماز')">
+        <div class="qari-name">أبو جعفر</div>
+        <div class="rawi-name">رواية ابن جماز</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('يعقوب','رويس')">
+        <div class="qari-name">يعقوب الحضرمي</div>
+        <div class="rawi-name">رواية رويس</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('يعقوب','روح')">
+        <div class="qari-name">يعقوب الحضرمي</div>
+        <div class="rawi-name">رواية روح</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('خلف','إسحاق')">
+        <div class="qari-name">خلف البزار</div>
+        <div class="rawi-name">رواية إسحاق</div>
+      </div>
+      <div class="riwaya-card" onclick="filterByRiwaya('خلف','إدريس')">
+        <div class="qari-name">خلف البزار</div>
+        <div class="rawi-name">رواية إدريس</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- مشغّل الصوت الثابت -->
+<div class="audio-player-bar" id="globalPlayer">
+  <button class="player-btn" id="playerPlayBtn" onclick="togglePlay()">
+    <i class="fas fa-play"></i>
+  </button>
+  <div class="player-title-wrap">
+    <div class="p-title" id="playerTitle">—</div>
+    <div class="p-sub" id="playerSub">—</div>
+  </div>
+  <audio id="mainAudio" controls onended="onAudioEnd()" ontimeupdate="updateProgress()"></audio>
+  <div class="player-close" onclick="closePlayer()"><i class="fas fa-times"></i></div>
+</div>
+
+<!-- الفوتر -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;padding:24px 0">
+      <p>© 2025 مقرأة غِنديات لتعليم القراءات – مكة المكرمة</p>
+      <div style="display:flex;gap:12px">
+        <a href="https://wa.me/966542337488" class="social-btn" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://whatsapp.com/channel/0029VaEqDf259PwQIXBaNB3G" class="social-btn" title="قناة واتساب"><i class="fas fa-broadcast-tower"></i></a>
+        <a href="https://t.me/Hawaa_moussa" class="social-btn" title="تيليجرام"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.tiktok.com/@omgansmab1m" class="social-btn" title="تيك توك"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="floating-contact">
+  <a href="https://wa.me/966542337488" class="float-btn float-wa" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://t.me/Hawaa_moussa" class="float-btn float-tg" title="تيليجرام"><i class="fab fa-telegram"></i></a>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+let allSheikhs = [], allRecitations = [], currentFilter = 'all', currentSearch = '';
+let currentAudioUrl = '', isPlaying = false;
+
+async function loadData() {
+  const [shRes, recRes] = await Promise.all([
+    fetch('tables/sheikhs?limit=100&sort=order').then(r=>r.json()),
+    fetch('tables/recitations?limit=500').then(r=>r.json())
+  ]);
+  allSheikhs = shRes.data || [];
+  allRecitations = recRes.data || [];
+  renderSheikhs();
+}
+
+function renderSheikhs() {
+  let filtered = allSheikhs.filter(sh => sh.status !== 'inactive');
+  if (currentFilter !== 'all') {
+    filtered = filtered.filter(sh => (sh.speciality||'').includes(currentFilter));
+  }
+  if (currentSearch) {
+    filtered = filtered.filter(sh =>
+      (sh.name||'').includes(currentSearch) ||
+      (sh.speciality||'').includes(currentSearch) ||
+      (sh.bio||'').includes(currentSearch)
+    );
+  }
+  const container = document.getElementById('sheikhsList');
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <i class="fas fa-user-graduate"></i>
+        <p>${allSheikhs.length === 0 ? 'لا يوجد معلمات مسجّلات حتى الآن' : 'لا توجد نتائج مطابقة'}</p>
+        ''
+      </div>`;
+    return;
+  }
+  container.innerHTML = filtered.map(sh => {
+    const recs = allRecitations.filter(r => r.status !== 'inactive' && (r.sheikh_id === sh.id || r.sheikh_name === sh.name));
+    return `
+      <div class="sheikh-detail-card" id="sheikh-card-${sh.id}">
+        <div class="sheikh-detail-header">
+          <div class="sheikh-detail-img">
+            ${sh.photo_url
+              ? `<img src="${sh.photo_url}" alt="${sh.name}" onerror="this.outerHTML='<div class=avatar-big><i class=fas fa-user-graduate></i></div>'">`
+              : `<div class="avatar-big"><i class="fas fa-user-graduate"></i></div>`}
+          </div>
+          <div class="sheikh-detail-info">
+            <h3>${sh.name || ''}</h3>
+            <div class="sheikh-spec"><i class="fas fa-award"></i> ${sh.speciality || ''}</div>
+            <p class="sheikh-bio-text">${sh.bio || 'لا توجد سيرة ذاتية'}</p>
+            <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+              <span class="badge badge-gold"><i class="fas fa-headphones"></i> ${recs.length} تلاوة</span>
+              ${sh.status==='active'?'<span class="badge badge-olive">نشطة</span>':''}
+            </div>
+          </div>
+        </div>
+        <div class="recitations-list">
+          <h4><i class="fas fa-music"></i> التلاوات الصوتية (${recs.length})</h4>
+          ${recs.length === 0
+            ? '<p style="color:var(--text-muted);font-size:.88rem">لا توجد تلاوات مرفوعة لهذه المعلمة بعد</p>'
+            : recs.map(rec => `
+              <div class="rec-item" id="rec-${rec.id}" onclick="playRecitation('${rec.audio_url||''}','${(rec.surah_name||'').replace(/'/g,"\\'")}','${(sh.name||'').replace(/'/g,"\\'")}','${rec.riwaya||''}','${rec.id}')">
+                <div class="rec-play-btn" id="btn-${rec.id}">
+                  <i class="fas ${rec.audio_url ? 'fa-play' : 'fa-volume-mute'}"></i>
+                </div>
+                <div class="rec-info">
+                  <div class="rec-name">${rec.surah_name || ''}</div>
+                  <div class="rec-riwaya"><i class="fas fa-book-quran" style="color:var(--gold-primary);font-size:.75rem"></i> ${rec.riwaya || ''}</div>
+                </div>
+                ${!rec.audio_url ? '<div class="rec-no-audio"><i class="fas fa-info-circle"></i> لا يوجد ملف صوتي</div>' : ''}
+              </div>
+            `).join('')}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSheikhs();
+}
+
+function filterSheikhs(val) {
+  currentSearch = val;
+  renderSheikhs();
+}
+
+function filterByRiwaya(qari, rawi) {
+  currentSearch = rawi;
+  document.getElementById('searchInput').value = rawi;
+  // إلغاء الفلاتر الأخرى
+  currentFilter = 'all';
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filter-btn')[0]?.classList.add('active');
+  // تمييز البطاقة
+  document.querySelectorAll('.riwaya-card').forEach(c => c.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  renderSheikhs();
+}
+
+let currentRecId = '';
+function playRecitation(url, surah, sheikh, riwaya, recId) {
+  if (!url) { alert('لا يوجد ملف صوتي لهذه التلاوة'); return; }
+
+  // إلغاء تمييز السابق
+  if (currentRecId) {
+    document.getElementById('rec-' + currentRecId)?.classList.remove('playing');
+    const prevBtn = document.getElementById('btn-' + currentRecId);
+    if (prevBtn) prevBtn.innerHTML = '<i class="fas fa-play"></i>';
+  }
+
+  currentRecId = recId;
+  const audio = document.getElementById('mainAudio');
+  audio.src = url;
+  audio.play();
+  isPlaying = true;
+  updatePlayerUI(surah, sheikh, riwaya);
+
+  document.getElementById('rec-' + recId)?.classList.add('playing');
+  document.getElementById('btn-' + recId).innerHTML = '<i class="fas fa-pause"></i>';
+  document.getElementById('playerPlayBtn').innerHTML = '<i class="fas fa-pause"></i>';
+}
+
+function updatePlayerUI(surah, sheikh, riwaya) {
+  document.getElementById('playerTitle').textContent = surah;
+  document.getElementById('playerSub').textContent = sheikh + ' – ' + riwaya;
+  document.getElementById('globalPlayer').classList.add('active');
+}
+
+function togglePlay() {
+  const audio = document.getElementById('mainAudio');
+  if (isPlaying) {
+    audio.pause(); isPlaying = false;
+    document.getElementById('playerPlayBtn').innerHTML = '<i class="fas fa-play"></i>';
+    if (currentRecId) document.getElementById('btn-' + currentRecId).innerHTML = '<i class="fas fa-play"></i>';
+  } else {
+    audio.play(); isPlaying = true;
+    document.getElementById('playerPlayBtn').innerHTML = '<i class="fas fa-pause"></i>';
+    if (currentRecId) document.getElementById('btn-' + currentRecId).innerHTML = '<i class="fas fa-pause"></i>';
+  }
+}
+
+function onAudioEnd() {
+  isPlaying = false;
+  document.getElementById('playerPlayBtn').innerHTML = '<i class="fas fa-play"></i>';
+  if (currentRecId) {
+    document.getElementById('rec-' + currentRecId)?.classList.remove('playing');
+    document.getElementById('btn-' + currentRecId).innerHTML = '<i class="fas fa-play"></i>';
+    currentRecId = '';
+  }
+}
+
+function closePlayer() {
+  const audio = document.getElementById('mainAudio');
+  audio.pause(); audio.src = '';
+  isPlaying = false;
+  currentRecId = '';
+  document.getElementById('globalPlayer').classList.remove('active');
+  document.querySelectorAll('.rec-item').forEach(el => el.classList.remove('playing'));
+  document.querySelectorAll('.rec-play-btn').forEach(el => el.innerHTML = '<i class="fas fa-play"></i>');
+}
+
+function updateProgress() {}
+// ════════════════════════════════════
+//  فتح موقع التلاوات الخارجي عند الضغط على الرواية
+// ════════════════════════════════════
+const originalFilterByRiwaya = filterByRiwaya;
+filterByRiwaya = function(qari, rawi) {
+  originalFilterByRiwaya(qari, rawi);
+  
+  const key = qari + '-' + rawi;
+  const searchQuery = encodeURIComponent(qari + ' ' + rawi);
+  const url = 'https://www.mp3quran.net/eng?search=' + searchQuery;
+  
+  window.open(url, '_blank');
+};
+
+document.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>

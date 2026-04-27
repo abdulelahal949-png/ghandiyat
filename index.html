@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="مقرأة غِنديات لتعليم القراءات – تابعة لجمعية طابة بالمدينة المنورة، تعليم القراءات العشر للنساء">
+<meta name="keywords" content="مقرأة غنديات، قراءات عشر، تجويد، إجازة، المدينة المنورة">
+<title>مقرأة غِنديات | تعليم القراءات القرآنية</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;800&family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --brown-deep:     #2A1A0E;
+  --brown-dark:     #3D2B1F;
+  --brown-medium:   #5C3D24;
+  --brown-light:    #7A5535;
+  --gold-primary:   #C5A059;
+  --gold-light:     #D4B578;
+  --gold-lighter:   #E8D0A0;
+  --gold-shine:     #F0DFB0;
+  --gold-dark:      #9E7A3A;
+  --gold-gradient:  linear-gradient(135deg, #9E7A3A 0%, #C5A059 40%, #E8D0A0 60%, #C5A059 100%);
+  --cream:          #FBF6EE;
+  --cream-light:    #FFFDF8;
+  --white:          #FFFFFF;
+  --text-on-dark:   rgba(255,255,255,.92);
+  --shadow-gold:    0 4px 24px rgba(197,160,89,.35);
+  --shadow-gold-lg: 0 8px 48px rgba(197,160,89,.45);
+  --shadow-dark:    0 12px 48px rgba(0,0,0,.4);
+  --radius-sm:  8px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --radius-xl:  36px;
+  --radius-full:9999px;
+  --nav-h:      80px;
+  --transition: all .3s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Cairo', 'Amiri', sans-serif;
+  direction: rtl; text-align: right;
+  background: var(--brown-deep);
+  color: var(--text-on-dark);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+ul, ol { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--brown-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 3px; }
+
+.islamic-bg { position: relative; }
+.islamic-bg::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M50 10 L90 32 L90 68 L50 90 L10 68 L10 32Z' fill='none' stroke='rgba(197,160,89,0.1)' stroke-width='1'/%3E%3Cpath d='M50 25 L75 40 L75 60 L50 75 L25 60 L25 40Z' fill='none' stroke='rgba(197,160,89,0.07)' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='5' fill='rgba(197,160,89,0.05)'/%3E%3C/svg%3E");
+}
+.islamic-bg > * { position: relative; z-index: 1; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px;
+  border-radius: var(--radius-full);
+  font-weight: 700; font-size: 1rem; font-family: 'Cairo', sans-serif;
+  transition: var(--transition); cursor: pointer;
+}
+.btn-gold {
+  background: var(--gold-gradient);
+  color: var(--brown-deep);
+  box-shadow: var(--shadow-gold);
+  border: none;
+}
+.btn-gold:hover { transform: translateY(-3px); box-shadow: var(--shadow-gold-lg); }
+.btn-outline {
+  background: transparent;
+  color: var(--gold-light);
+  border: 2px solid var(--gold-primary);
+}
+.btn-outline:hover { background: rgba(197,160,89,.15); transform: translateY(-2px); }
+.btn-sm { padding: 10px 24px; font-size: .9rem; }
+.btn-lg { padding: 18px 48px; font-size: 1.1rem; }
+
+.gold-line {
+  width: 80px; height: 3px;
+  background: var(--gold-gradient);
+  border-radius: var(--radius-full);
+  margin: 12px auto;
+}
+.gold-line.right { margin-right: 0; margin-left: auto; }
+
+.section-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(197,160,89,.15);
+  border: 1px solid rgba(197,160,89,.4);
+  color: var(--gold-light);
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  font-size: .82rem; font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: .5px;
+}
+.section-badge i { color: var(--gold-primary); }
+
+/* ═══════════════════════════════════════
+   شريط التنقل
+═══════════════════════════════════════ */
+.navbar {
+  position: fixed; top: 0; right: 0; left: 0;
+  z-index: 1000; height: var(--nav-h);
+  background: rgba(42,26,14,.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(197,160,89,.2);
+  box-shadow: 0 4px 24px rgba(0,0,0,.3);
+  transition: var(--transition);
+}
+.navbar.scrolled {
+  background: rgba(42,26,14,1);
+  border-bottom-color: rgba(197,160,89,.4);
+}
+.nav-inner {
+  max-width: 1300px; margin: 0 auto;
+  padding: 0 24px; height: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 14px; flex-shrink: 0;
+  text-decoration: none;
+}
+.nav-logo img {
+  width: 52px; height: 52px; object-fit: contain;
+  border-radius: var(--radius-full);
+  border: 2px solid rgba(197,160,89,.4);
+  box-shadow: var(--shadow-gold);
+}
+.nav-logo-text { line-height: 1.25; }
+.nav-logo-text .brand { display: block; font-family: 'Scheherazade New', serif; font-size: 1.15rem; font-weight: 700; }
+.brand-ghan { color: #FFFFFF; }
+.brand-dyat { color: var(--gold-light); }
+.nav-logo-text .brand-sub { font-size: .7rem; color: rgba(197,160,89,.75); }
+
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a {
+  padding: 8px 13px; border-radius: var(--radius-sm);
+  font-size: .88rem; font-weight: 600;
+  color: rgba(255,255,255,.75);
+  transition: var(--transition); white-space: nowrap;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold-light); background: rgba(197,160,89,.1); }
+
+.nav-cta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-toggle {
+  display: none; width: 40px; height: 40px;
+  border-radius: var(--radius-sm); background: rgba(197,160,89,.1);
+  align-items: center; justify-content: center; flex-direction: column; gap: 5px;
+  border: 1px solid rgba(197,160,89,.3);
+}
+.nav-toggle span { display: block; width: 20px; height: 2px; background: var(--gold-light); border-radius: 2px; transition: var(--transition); }
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ═══════════════════════════════════════
+   هيرو
+═══════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+  position: relative;
+  display: flex; align-items: center;
+  overflow: hidden;
+  background: linear-gradient(150deg, #2A1A0E 0%, #3D2B1F 35%, #4A3020 65%, #2A1A0E 100%);
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cpath d='M60 12 L108 38 L108 82 L60 108 L12 82 L12 38Z' fill='none' stroke='rgba(197,160,89,0.09)' stroke-width='1'/%3E%3Cpath d='M60 30 L90 48 L90 72 L60 90 L30 72 L30 48Z' fill='none' stroke='rgba(197,160,89,0.06)' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='8' fill='none' stroke='rgba(197,160,89,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -30%; right: -15%; width: 65%; height: 130%;
+  background: radial-gradient(ellipse, rgba(197,160,89,.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-container {
+  max-width: 1300px; margin: 0 auto; padding: 80px 24px;
+  width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+  position: relative; z-index: 2;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(197,160,89,.14);
+  border: 1px solid rgba(197,160,89,.45);
+  color: var(--gold-light); padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: .82rem; font-weight: 700; margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+.hero-eyebrow i { color: var(--gold-primary); }
+.hero-title {
+  font-family: 'Scheherazade New', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700; line-height: 1.35; margin-bottom: 6px;
+  color:var(--gold-lighter);
+  text-shadow: 0 2px 20px rgba(0,0,0,.4);
+}
+.hero-title .gold-word {
+  color: #FFFFFF;
+  text-shadow: 0 2px 8px rgba(255,255,255,.4);
+}
+.hero-subtitle {
+  font-family: 'Amiri', serif; font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+  color: var(--gold-lighter); margin-bottom: 20px; line-height: 1.9;
+}
+.hero-desc {
+  font-size: 1rem; color: rgba(255,255,255,.82);
+  line-height: 2; margin-bottom: 36px; max-width: 520px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+}
+.hstat {
+  background: rgba(197,160,89,.1);
+  border: 1.5px solid rgba(197,160,89,.3);
+  border-radius: var(--radius-lg); padding: 28px 16px; text-align: center;
+  backdrop-filter: blur(16px); transition: var(--transition);
+  box-shadow: 0 4px 20px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.hstat:hover {
+  border-color: rgba(197,160,89,.65);
+  background: rgba(197,160,89,.16);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 32px rgba(197,160,89,.3);
+}
+.hstat-icon { font-size: 2rem; color: var(--gold-primary); margin-bottom: 10px; display: block; filter: drop-shadow(0 0 8px rgba(197,160,89,.6)); }
+.hstat-num { font-family: 'Scheherazade New', serif; font-size: 2.6rem; font-weight: 700; color: var(--gold-shine); display: block; line-height: 1; text-shadow: 0 0 20px rgba(197,160,89,.4); }
+.hstat-lbl { font-size: .8rem; color: rgba(255,255,255,.85); margin-top: 6px; font-weight: 600; }
+
+/* ═══════════════════════════════════════
+   شريط الإعلانات
+═══════════════════════════════════════ */
+.ticker-bar {
+  background: var(--gold-gradient);
+  padding: 12px 0; overflow: hidden;
+  position: relative;
+}
+.ticker-inner {
+  display: flex; gap: 56px;
+  animation: ticker 28s linear infinite;
+  white-space: nowrap;
+}
+.ticker-item {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: .88rem; font-weight: 700; color: var(--brown-deep);
+}
+.ticker-item i { color: var(--brown-dark); }
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ═══════════════════════════════════════
+   قسم النبذة - مع الصورة الجديدة (شكل بطاقة فاخر)
+═══════════════════════════════════════ */
+.about-section {
+  padding: 100px 0;
+  background: linear-gradient(180deg, #2A1A0E 0%, #3D2B1F 100%);
+  position: relative; overflow: hidden;
+}
+.about-section::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M50 10 L90 32 L90 68 L50 90 L10 68 L10 32Z' fill='none' stroke='rgba(197,160,89,0.07)' stroke-width='1'/%3E%3C/svg%3E");
+}
+.about-grid {
+  max-width: 1300px; margin: 0 auto; padding: 0 24px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+  position: relative; z-index: 1;
+}
+
+/* بطاقة النبذة */
+.about-card {
+  background: var(--cream-light);
+  border-radius: var(--radius-xl);
+  padding: 48px 44px;
+  box-shadow: var(--shadow-dark);
+  border: 2px solid rgba(197,160,89,.3);
+  position: relative; overflow: hidden;
+}
+.about-card::before {
+  content: '';
+  position: absolute; top: 0; right: 0; left: 0;
+  height: 5px; background: var(--gold-gradient);
+}
+.about-card::after {
+  content: '❖';
+  position: absolute; bottom: 20px; left: 24px;
+  font-size: 3rem; color: rgba(197,160,89,.12);
+  font-family: 'Scheherazade New', serif; line-height: 1;
+}
+.about-card-title {
+  font-family: 'Scheherazade New', serif;
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--brown-deep); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.about-card-title i { color: var(--gold-primary); }
+.about-card-text {
+  font-family: 'Amiri', serif; font-size: 1.1rem; line-height: 2.1;
+  color: #4A3020; text-align: justify;
+}
+.about-card-footer {
+  margin-top: 28px; padding-top: 20px;
+  border-top: 1px solid rgba(197,160,89,.25);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.about-card-footer .org-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(197,160,89,.12); color: var(--brown-medium);
+  border: 1px solid rgba(197,160,89,.3); padding: 5px 14px;
+  border-radius: var(--radius-full); font-size: .82rem; font-weight: 700;
+}
+
+/* جانب المعلومات والصورة */
+.about-info {}
+.about-info h2 {
+  font-family: 'Scheherazade New', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--gold-shine); margin-bottom: 20px; line-height: 1.4;
+}
+.about-info .lead {
+  font-size: 1.05rem; color: rgba(255,255,255,.82); line-height: 2; margin-bottom: 32px;
+}
+.about-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.fact-box {
+  background: rgba(197,160,89,.1); border: 1.5px solid rgba(197,160,89,.25);
+  border-radius: var(--radius-lg); padding: 20px; text-align: center;
+  transition: var(--transition);
+}
+.fact-box:hover { background: rgba(197,160,89,.18); border-color: rgba(197,160,89,.5); transform: translateY(-4px); }
+.fact-box .num { font-family: 'Scheherazade New', serif; font-size: 2.2rem; color: var(--gold-shine); font-weight: 700; display: block; }
+.fact-box .lbl { font-size: .78rem; color: rgba(255,255,255,.75); margin-top: 4px; }
+
+/* ═══ الصورة الجديدة - شكل بطاقة فاخر ═══ */
+.about-image-wrap {
+  margin-top: 40px;
+}
+.about-image-label {
+  font-family: 'Scheherazade New', serif;
+  font-size: 1.1rem;
+  color: var(--gold-shine);
+  margin-bottom: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.about-image-label i { color: var(--gold-primary); font-size: 1rem; }
+
+.about-image-card {
+  background: var(--cream-light);
+  border-radius: var(--radius-xl);
+  padding: 16px;
+  border: 2px solid rgba(197,160,89,.35);
+  box-shadow: 0 8px 32px rgba(0,0,0,.35), inset 0 0 0 1px rgba(197,160,89,.15);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.about-image-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; left: 0;
+  height: 4px;
+  background: var(--gold-gradient);
+}
+.about-image-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(197,160,89,.25), inset 0 0 0 1px rgba(197,160,89,.25);
+  border-color: rgba(197,160,89,.6);
+}
+.about-image-card img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  display: block;
+  transition: var(--transition);
+}
+.about-image-card:hover img {
+  transform: scale(1.02);
+}
+.about-image-caption {
+  text-align: center;
+  margin-top: 14px;
+  font-size: .85rem;
+  color: var(--brown-medium);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════
+   قسم البرامج
+═══════════════════════════════════════ */
+.programs-section {
+  padding: 100px 0;
+  background: var(--cream);
+}
+.programs-inner { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+.sec-header { text-align: center; margin-bottom: 60px; }
+.sec-header h2 {
+  font-family: 'Scheherazade New', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--brown-deep); margin-bottom: 14px;
+}
+.sec-header p { color: var(--brown-medium); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+.programs-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 24px;
+}
+.prog-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(61,43,31,.12);
+  border: 2px solid rgba(197,160,89,.18);
+  transition: var(--transition);
+  position: relative;
+}
+.prog-card:hover { transform: translateY(-8px); box-shadow: 0 12px 48px rgba(61,43,31,.2); border-color: rgba(197,160,89,.5); }
+.prog-card-top {
+  padding: 36px 28px 28px; text-align: center;
+  background: linear-gradient(160deg, var(--brown-deep), var(--brown-dark));
+  position: relative; overflow: hidden;
+}
+.prog-card-top::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 5 L55 20 L55 40 L30 55 L5 40 L5 20Z' fill='none' stroke='rgba(197,160,89,0.15)' stroke-width='1'/%3E%3C/svg%3E");
+}
+.prog-icon {
+  width: 72px; height: 72px; margin: 0 auto 16px;
+  border-radius: var(--radius-full);
+  background: var(--gold-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; color: var(--brown-deep);
+  box-shadow: var(--shadow-gold);
+  position: relative; z-index: 1;
+}
+.prog-card-top h3 {
+  font-family: 'Scheherazade New', serif; font-size: 1.3rem;
+  color: var(--gold-shine); position: relative; z-index: 1;
+}
+.prog-card-body { padding: 24px 28px; }
+.prog-card-body p { font-size: .92rem; color: var(--brown-medium); line-height: 1.9; margin-bottom: 20px; }
+.prog-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(197,160,89,.12); color: var(--brown-dark);
+  border: 1px solid rgba(197,160,89,.3); padding: 4px 12px;
+  border-radius: var(--radius-full); font-size: .76rem; font-weight: 700;
+}
+.prog-bar {
+  height: 3px; margin-top: 20px;
+  background: rgba(197,160,89,.15); border-radius: 2px; overflow: hidden;
+}
+.prog-bar-fill {
+  height: 100%; background: var(--gold-gradient);
+  border-radius: 2px; transition: width 1.2s ease;
+}
+
+/* ═══════════════════════════════════════
+   قسم الخدمات
+═══════════════════════════════════════ */
+.services-section {
+  padding: 100px 0;
+  background: linear-gradient(160deg, #3D2B1F 0%, #2A1A0E 100%);
+  position: relative; overflow: hidden;
+}
+.services-inner { max-width: 1300px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.services-list-title {
+  font-family: 'Scheherazade New', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  color: var(--gold-shine); margin-bottom: 12px;
+}
+.services-list-sub { color: rgba(255,255,255,.72); font-size: .95rem; margin-bottom: 36px; }
+
+.service-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 18px 20px; margin-bottom: 12px;
+  background: rgba(197,160,89,.07);
+  border: 1px solid rgba(197,160,89,.18);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+}
+.service-item:hover { background: rgba(197,160,89,.14); border-color: rgba(197,160,89,.4); transform: translateX(-4px); }
+.service-icon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--gold-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; color: var(--brown-deep);
+  box-shadow: 0 4px 12px rgba(197,160,89,.3);
+}
+.service-text { flex: 1; font-size: .94rem; color: rgba(255,255,255,.88); line-height: 1.75; padding-top: 6px; font-weight: 600; }
+
+.services-aside {}
+.aside-card {
+  background: var(--cream-light);
+  border-radius: var(--radius-xl); padding: 40px;
+  box-shadow: var(--shadow-dark);
+  border: 2px solid rgba(197,160,89,.3);
+  position: relative; overflow: hidden; margin-bottom: 24px;
+}
+.aside-card::before { content: ''; position: absolute; top:0; right:0; left:0; height:4px; background: var(--gold-gradient); }
+.aside-card-icon { font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 16px; display: block; }
+.aside-card h3 { font-family: 'Scheherazade New', serif; font-size: 1.4rem; color: var(--brown-deep); margin-bottom: 10px; }
+.aside-card p { font-size: .9rem; color: var(--brown-medium); line-height: 1.9; }
+.aside-stat {
+  display: flex; align-items: center; gap: 16px;
+  background: linear-gradient(135deg, var(--brown-deep), var(--brown-dark));
+  border-radius: var(--radius-xl); padding: 28px 32px;
+  border: 1.5px solid rgba(197,160,89,.3);
+  box-shadow: var(--shadow-dark);
+}
+.aside-stat-num { font-family: 'Scheherazade New', serif; font-size: 3.5rem; color: var(--gold-shine); font-weight: 700; line-height: 1; }
+.aside-stat-info .title { font-size: 1rem; color: var(--gold-light); font-weight: 700; display: block; margin-bottom: 4px; }
+.aside-stat-info .sub { font-size: .82rem; color: rgba(255,255,255,.6); }
+
+/* ═══════════════════════════════════════
+   شريط الإحصاءات
+═══════════════════════════════════════ */
+.counter-strip {
+  padding: 56px 0;
+  background: var(--gold-gradient);
+}
+.counter-inner { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+.counter-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(61,43,31,.15); }
+.counter-cell {
+  text-align: center; padding: 32px 20px;
+  background: transparent;
+  position: relative;
+}
+.counter-cell + .counter-cell::before {
+  content: ''; position: absolute; right: 0; top: 20%; bottom: 20%;
+  width: 1px; background: rgba(61,43,31,.2);
+}
+.counter-cell .cnum { font-family: 'Scheherazade New', serif; font-size: 3.2rem; font-weight: 700; color: var(--brown-deep); display: block; line-height: 1; }
+.counter-cell .clbl { font-size: .92rem; color: var(--brown-dark); font-weight: 700; margin-top: 8px; display: block; }
+
+/* ═══════════════════════════════════════
+   قسم التواصل - بدون صور QR
+═══════════════════════════════════════ */
+.contact-section {
+  padding: 100px 0;
+  background: var(--cream);
+  position: relative; overflow: hidden;
+}
+.contact-inner { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+
+.join-card {
+  background: linear-gradient(160deg, var(--brown-deep) 0%, #4A3020 100%);
+  border-radius: var(--radius-xl); padding: 52px 44px; text-align: center;
+  border: 2px solid rgba(197,160,89,.35);
+  box-shadow: var(--shadow-dark);
+  position: relative; overflow: hidden;
+}
+.join-card::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 8 L72 28 L72 52 L40 72 L8 52 L8 28Z' fill='none' stroke='rgba(197,160,89,0.12)' stroke-width='1'/%3E%3C/svg%3E");
+}
+.join-card > * { position: relative; z-index: 1; }
+.join-icon { font-size: 3.5rem; margin-bottom: 20px; display: block; }
+.join-card h3 {
+  font-family: 'Scheherazade New', serif; font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--gold-shine); margin-bottom: 12px; line-height: 1.5;
+}
+.join-card p { color: rgba(255,255,255,.78); font-size: .95rem; margin-bottom: 36px; line-height: 1.9; }
+.join-channels { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.channel-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: var(--radius-full);
+  font-weight: 700; font-size: .95rem; transition: var(--transition);
+}
+.channel-wa { background: #25D366; color: #fff; box-shadow: 0 4px 16px rgba(37,211,102,.35); }
+.channel-wa:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(37,211,102,.45); }
+.channel-tg { background: #229ED9; color: #fff; box-shadow: 0 4px 16px rgba(34,158,217,.35); }
+.channel-tg:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(34,158,217,.45); }
+
+.social-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.social-card {
+  background: var(--white); border-radius: var(--radius-xl);
+  padding: 32px 24px; text-align: center;
+  border: 2px solid rgba(197,160,89,.2);
+  box-shadow: 0 6px 32px rgba(61,43,31,.12);
+  transition: var(--transition);
+}
+.social-card:hover { transform: translateY(-5px); box-shadow: 0 12px 48px rgba(61,43,31,.2); border-color: rgba(197,160,89,.45); }
+.social-card-icon {
+  width: 56px; height: 56px; border-radius: var(--radius-full);
+  background: var(--gold-gradient); margin: 0 auto 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; color: var(--brown-deep);
+  box-shadow: var(--shadow-gold);
+}
+.social-card h4 { font-size: 1rem; color: var(--brown-deep); font-weight: 700; margin-bottom: 4px; }
+.social-card p { font-size: .8rem; color: var(--brown-light); margin-bottom: 16px; }
+.social-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .85rem; font-weight: 700;
+  color: var(--gold-dark);
+  transition: var(--transition);
+}
+.social-link:hover { color: var(--brown-deep); }
+
+/* ═══════════════════════════════════════
+   الفوتر
+═══════════════════════════════════════ */
+.site-footer {
+  background: var(--brown-deep);
+  border-top: 3px solid rgba(197,160,89,.3);
+  padding: 60px 0 0;
+}
+.footer-inner { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 48px; }
+
+.footer-brand {}
+.footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.footer-logo img { width: 52px; height: 52px; object-fit: contain; border-radius: var(--radius-full); border: 2px solid rgba(197,160,89,.35); }
+.footer-brand-name { font-family: 'Scheherazade New', serif; font-size: 1.1rem; font-weight: 700; }
+.fbrand-w { color: #FFFFFF; }
+.fbrand-g { color: var(--gold-light); }
+.footer-brand p { font-size: .88rem; color: rgba(255,255,255,.6); line-height: 1.9; margin-bottom: 20px; }
+
+.footer-col h5 {
+  font-family: 'Scheherazade New', serif; font-size: 1rem; font-weight: 700;
+  color: var(--gold-light); margin-bottom: 16px; padding-bottom: 8px;
+  border-bottom: 1px solid rgba(197,160,89,.2); position: relative;
+}
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a {
+  font-size: .88rem; color: rgba(255,255,255,.6); display: flex; align-items: center; gap: 8px;
+  transition: var(--transition);
+}
+.footer-col ul li a i { color: var(--gold-primary); font-size: .7rem; }
+.footer-col ul li a:hover { color: var(--gold-light); padding-right: 4px; }
+
+.footer-social { display: flex; gap: 10px; margin-top: 16px; }
+.social-btn {
+  width: 40px; height: 40px; border-radius: var(--radius-sm);
+  background: rgba(255,255,255,.07); border: 1px solid rgba(197,160,89,.25);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.65); font-size: 1rem; transition: var(--transition);
+}
+.social-btn:hover { background: var(--gold-gradient); color: var(--brown-deep); border-color: var(--gold-primary); transform: translateY(-3px); }
+.social-wa:hover { background: #25D366 !important; border-color: #25D366 !important; }
+.social-tg:hover { background: #229ED9 !important; border-color: #229ED9 !important; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(197,160,89,.15); padding: 20px 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.4); }
+.footer-bottom a { color: var(--gold-primary); }
+
+.float-btns {
+  position: fixed; bottom: 28px; right: 28px; z-index: 500;
+  display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
+}
+.float-btn {
+  width: 52px; height: 52px; border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; box-shadow: 0 6px 24px rgba(0,0,0,.3);
+  transition: var(--transition);
+}
+.float-btn:hover { transform: scale(1.12) translateY(-3px); }
+.float-wa { background: #25D366; color: #fff; }
+.float-tg { background: #229ED9; color: #fff; }
+
+/* ═══════════════════════════════════════
+   تجاوب الشاشات
+═══════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+}
+@media (max-width: 992px) {
+  .hero-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero-eyebrow, .hero-actions { justify-content: center; }
+  .hero-desc { max-width: 100%; }
+  .about-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .counter-row { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 768px) {
+  :root { --nav-h: 68px; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: var(--nav-h); right: 0; left: 0; background: rgba(42,26,14,.99); backdrop-filter: blur(20px); padding: 16px; gap: 4px; border-bottom: 1px solid rgba(197,160,89,.2); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: flex; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .about-facts { grid-template-columns: 1fr 1fr; }
+  .programs-grid { grid-template-columns: 1fr; }
+  .social-cards { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .about-card { padding: 32px 24px; }
+}
+@media (max-width: 480px) {
+  .hero-stats { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .counter-row { grid-template-columns: 1fr 1fr; }
+  .social-cards { grid-template-columns: 1fr; }
+  .join-channels { flex-direction: column; align-items: center; }
+  .about-facts { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ✦ أزرار عائمة ✦ -->
+<div class="float-btns">
+  <a href="https://wa.me/966542337488" target="_blank" class="float-btn float-wa" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://t.me/Hawaa_moussa" target="_blank" class="float-btn float-tg" title="تيليجرام"><i class="fab fa-telegram-plane"></i></a>
+</div>
+
+<!-- ✦ شريط التنقل ✦ -->
+<nav class="navbar" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="غِنديات" onerror="this.style.display='none'">
+      <div class="nav-logo-text">
+        <span class="brand"><span class="brand-ghan">غِنديات</span><span class="brand-dyat"> للقراءات</span></span>
+        <span class="brand-sub">مقرأة تعليم القراءات القرآنية</span>
+      </div>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">الرئيسية</a></li>
+      <li><a href="programs.html">البرامج التعليمية</a></li>
+      <li><a href="sheikhs.html">المعلمات والتلاوات</a></li>
+      <li><a href="recitations.html">القراءات</a></li>
+      <li><a href="certificates.html">الشهادات</a></li>
+      <li><a href="contact.html">تواصل معنا</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-gold btn-sm"><i class="fas fa-envelope"></i> تواصلي</a>
+      <button class="nav-toggle" id="navToggle" aria-label="القائمة">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ✦ قسم الهيرو ✦ -->
+<section class="hero islamic-bg" id="hero">
+  <div class="hero-container">
+<!-- ✦ شعار وعبارة افتتاحية ✦ -->
+<div style="background: linear-gradient(135deg, #3D2B1F, #2A1A0E); padding: 40px 32px 36px; text-align: right; border-bottom: 2px solid rgba(197,160,89,.3); position: relative; overflow: hidden;">
+  <div style="position: absolute; inset: 0; background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2780%27 height=%2780%27%3E%3Cpath d=%27M40 8 L72 28 L72 52 L40 72 L8 52 L8 28Z%27 fill=%27none%27 stroke=%27rgba(197,160,89,0.08)%27 stroke-width=%271%27/%3E%3C/svg%3E');"></div>
+  
+  <!-- الشعار -->
+  <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px; position: relative; z-index: 1;">
+    <img src="images/logo.png" alt="غِنديات" style="width: 80px; height: 80px; object-fit: contain; border-radius: 50%; border: 2px solid rgba(197,160,89,.4); box-shadow: 0 4px 24px rgba(197,160,89,.35);" onerror="this.style.display='none'">
+    <div>
+      <span style="font-family: 'Scheherazade New', serif; font-size: 2rem; font-weight: 700;">
+        <span style="color: #FFFFFF;">غِنديات</span>
+        <span style="color: var(--gold-light);"> للقراءات</span>
+      </span>
+      <br>
+      <span style="font-size: .9rem; color: rgba(197,160,89,.75);">مقرأة تعليم القراءات القرآنية</span>
+    </div>
+  </div>
+
+  <!-- العبارة -->
+  <p style="font-family: 'Amiri', serif; font-size: 1.6rem; color: var(--gold-shine); position: relative; z-index: 1; line-height: 2; font-style: italic; text-shadow: 0 0 20px rgba(197,160,89,.3); margin: 0;">
+    <i class="fas fa-feather-alt" style="color: var(--gold-primary); margin-left: 12px; font-size: 1.4rem;"></i>
+    ترفرف الأرواح في آفاقِها وتُزهرُ الأفكارُ في محرابِها
+  </p>
+</div>
+
+    <div class="hero-text reveal">
+      <div class="hero-eyebrow">
+        <i class="fas fa-star"></i>
+        تابعة لجمعية طابة – المدينة المنورة
+      </div>
+      <h1 class="hero-title">
+        مقرأة <span class="gold-word">غِنديات</span><br>
+        لتعليم القراءات
+      </h1>
+      <p class="hero-subtitle">
+        «وَرَتِّلِ الْقُرْآنَ تَرْتِيلاً»
+      </p>
+      <p class="hero-desc">
+        بيئة تعليمية قرآنية فاخرة مخصصة للنساء، تُقدّم تعليم القراءات العشر
+        بأسانيد متصلة وفق منهج علمي رصين، بإشراف معلمات مجازات وذوات خبرة.
+      </p>
+      <div class="hero-actions">
+        <a href="programs.html" class="btn btn-gold btn-lg">
+          <i class="fas fa-book-open"></i> استعرضي البرامج
+        </a>
+        <a href="contact.html" class="btn btn-outline btn-lg">
+          <i class="fas fa-paper-plane"></i> انضمي إلينا
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats reveal">
+      <div class="hstat">
+        <span class="hstat-icon"><i class="fas fa-user-graduate"></i></span>
+        <span class="hstat-num" data-target="15">0</span>
+        <span class="hstat-lbl">معلمة متخصصة</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-icon"><i class="fas fa-book"></i></span>
+        <span class="hstat-num" data-target="10">0</span>
+        <span class="hstat-lbl">قراءة متواترة</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-icon"><i class="fas fa-certificate"></i></span>
+        <span class="hstat-num" data-target="30">0</span>
+        <span class="hstat-lbl">برنامجًا تعليميًا</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-icon"><i class="fas fa-headphones"></i></span>
+        <span class="hstat-num" data-target="200">0</span>
+        <span class="hstat-lbl">تلاوة مسجّلة</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-icon"><i class="fas fa-globe"></i></span>
+        <span class="hstat-num" data-target="20">0</span>
+        <span class="hstat-lbl">رواية مدروسة</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-icon"><i class="fas fa-scroll"></i></span>
+        <span class="hstat-num" data-target="100">0</span>
+        <span class="hstat-lbl">إجازة ممنوحة</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✦ شريط الإعلانات ✦ -->
+<div class="ticker-bar">
+  <div class="ticker-inner" id="tickerInner">
+    <span class="ticker-item"><i class="fas fa-star"></i> مقرأة غِنديات – تعليم القراءات العشر للنساء</span>
+    <span class="ticker-item"><i class="fas fa-map-marker-alt"></i> تابعة لجمعية طابة – المدينة المنورة</span>
+    <span class="ticker-item"><i class="fas fa-certificate"></i> إجازات بالقراءات العشر بروايتيها</span>
+    <span class="ticker-item"><i class="fas fa-headphones"></i> تعليم عن بُعد بأعلى مستويات الجودة</span>
+    <span class="ticker-item"><i class="fas fa-star"></i> مقرأة غِنديات – تعليم القراءات العشر للنساء</span>
+    <span class="ticker-item"><i class="fas fa-map-marker-alt"></i> تابعة لجمعية طابة – المدينة المنورة</span>
+    <span class="ticker-item"><i class="fas fa-certificate"></i> إجازات بالقراءات العشر بروايتيها</span>
+    <span class="ticker-item"><i class="fas fa-headphones"></i> تعليم عن بُعد بأعلى مستويات الجودة</span>
+  </div>
+</div>
+
+<div class="reveal" style="max-width:900px;margin:22px auto 0;padding:18px 22px;background:rgba(197,160,89,.08);border:1px solid rgba(197,160,89,.22);border-radius:18px;text-align:center;box-shadow:var(--shadow-sm)">
+  <p class="lead" style="margin:0 0 10px;font-size:1.05rem">القراءة لا تؤخذ من الكتب بل بالتلقّي المباشر عن معلمة مجازة، فالإجازة ركن أساس في هذا العلم</p>
+  <p class="lead" style="margin:0;font-size:1rem;font-weight:700">فالتلقي ركن أساسي</p>
+</div>
+
+<!-- ✦ قسم النبذة - مع الصورة الجديدة (شكل بطاقة فاخر) ✦ -->
+<!-- ✦ قسم النبذة - تنسيق الساندوتش ✦ -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+
+    <!-- العمود الواحد: نص - صورة - نص -->
+    <div class="reveal" style="grid-column: 1 / -1;">
+      <div class="section-badge"><i class="fas fa-info-circle"></i> نبذة عن المقرأة</div>
+      <h2 style="font-family: 'Scheherazade New', serif; font-size: clamp(1.8rem, 4vw, 3rem); color: var(--gold-shine); margin-bottom: 20px; line-height: 1.4; text-align: center;">رحلتك مع القرآن<br>تبدأ هنا</h2>
+      <div class="gold-line" style="margin-bottom:32px"></div>
+    </div>
+
+    <!-- النص العلوي -->
+    <div class="reveal" style="grid-column: 1 / -1;">
+      <p class="lead" style="text-align:center; max-width:800px; margin:0 auto 12px">
+        منظومة تعليمية قرآنية فاخرة موجَّهة للنساء، تُعلّم القراءات العشر
+        بأسانيد متصلة وفق منهج علمي رصين يجمع بين الأصالة والتميز.
+      </p>
+    </div>
+
+    <!-- الصورة في المنتصف -->
+    <div class="about-image-wrap reveal" style="grid-column: 1 / -1; max-width: 500px; margin: 0 auto;">
+      <div class="about-image-label" style="justify-content: center;">
+        <i class="fas fa-book-open"></i>
+        بروشور مقرأة غِنديات
+      </div>
+      <div class="about-image-card">
+        <img src="images/brochure-qr.png" alt="بروشور مقرأة غِنديات">
+        <div class="about-image-caption">امسحي الكود للانضمام إلى المقرأة</div>
+      </div>
+    </div>
+
+    <!-- الإحصائيات -->
+    <div class="about-facts reveal" style="grid-column: 1 / -1; max-width: 700px; margin: 0 auto;">
+      <div class="fact-box">
+        <span class="num">15+</span>
+        <span class="lbl">معلمة مجازة</span>
+      </div>
+      <div class="fact-box">
+        <span class="num">10</span>
+        <span class="lbl">قراءات متواترة</span>
+      </div>
+      <div class="fact-box">
+        <span class="num">30+</span>
+        <span class="lbl">برنامجًا تعليميًا</span>
+      </div>
+      <div class="fact-box">
+        <span class="num">100+</span>
+        <span class="lbl">إجازة ممنوحة</span>
+      </div>
+    </div>
+
+    <!-- بطاقة النبذة السفلية -->
+    <div class="about-card reveal" style="grid-column: 1 / -1; max-width: 700px; margin: 0 auto;">
+      <div class="about-card-title" style="justify-content: center;">
+        <i class="fas fa-mosque"></i>
+        مقرأة غِنديات لتعليم القراءات
+      </div>
+      <div class="gold-line" style="margin-bottom:24px"></div>
+      <p class="about-card-text" style="text-align:center;">
+        تابعة لجمعية طابة بالمدينة المنورة، وتهدف إلى خدمة القرآن وأهله،
+        ونشر علم القراءات وإتقان تلاوة كتاب الله في الصدور،
+        تلاوةً وتجويداً وحفظاً.
+      </p>
+      <p class="about-card-text" style="margin-top:16px; text-align:center;">
+        وتحرص المقرأة على توفير بيئة تعليمية تهدف إلى ربط النساء بكتاب الله
+        علمًا وعملاً، بإشراف معلمات مجازات وذوات خبرة.
+      </p>
+      <div class="about-card-footer" style="justify-content: center;">
+        <span class="org-tag"><i class="fas fa-building"></i> جمعية طابة</span>
+        <span class="org-tag"><i class="fas fa-map-marker-alt"></i> المدينة المنورة</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ✦ قسم البرامج ✦ -->
+<section class="programs-section" id="programs">
+  <div class="programs-inner">
+    <div class="sec-header reveal">
+      <div class="section-badge" style="background:rgba(61,43,31,.1);border-color:rgba(197,160,89,.35);color:var(--brown-dark);">
+        <i class="fas fa-mosque" style="color:var(--gold-primary)"></i> برامجنا التعليمية
+      </div>
+      <h2 style="color:var(--brown-deep)">برامج مقرأة غِنديات</h2>
+      <div class="gold-line"></div>
+      <p>منظومة متكاملة من البرامج التعليمية القرآنية للنساء – عن بُعد</p>
+    </div>
+
+   <div class="programs-grid">
+
+  <div class="prog-card reveal">
+    <div class="prog-card-top">
+      <div class="prog-icon"><i class="fas fa-microphone"></i></div>
+      <h3>تعليم وتصحيح التلاوة</h3>
+    </div>
+    <div class="prog-card-body">
+      <p>تعليم وتصحيح التلاوة للنساء عن بُعد بأسلوب متدرج يراعي جميع المستويات</p>
+      <span class="prog-tag"><i class="fas fa-user-graduate"></i> جميع المستويات</span>
+    </div>
+  </div>
+
+  <div class="prog-card reveal">
+    <div class="prog-card-top">
+      <div class="prog-icon"><i class="fas fa-scroll"></i></div>
+      <h3>برامج تأهيل مجازات</h3>
+    </div>
+    <div class="prog-card-body">
+      <p>برامج تأهيل مجازات في القراءات العشر بأسانيد متصلة إلى النبي ﷺ</p>
+      <span class="prog-tag"><i class="fas fa-award"></i> متقدم</span>
+    </div>
+  </div>
+
+  <div class="prog-card reveal">
+    <div class="prog-card-top">
+      <div class="prog-icon"><i class="fas fa-kaaba"></i></div>
+      <h3>حلقات تثبيت ومراجعة الحفظ</h3>
+    </div>
+    <div class="prog-card-body">
+      <p>حلقات دورية لتثبيت الحفظ ومراجعته بأسلوب منهجي يضمن إتقان المحفوظ</p>
+      <span class="prog-tag"><i class="fas fa-user-graduate"></i> جميع المستويات</span>
+    </div>
+  </div>
+
+  <div class="prog-card reveal">
+    <div class="prog-card-top">
+      <div class="prog-icon"><i class="fas fa-certificate"></i></div>
+      <h3>شهادات الحضور والاجتياز</h3>
+    </div>
+    <div class="prog-card-body">
+      <p>إتاحة الحصول على شهادات الحضور والاجتياز والإجازات المعتمدة</p>
+      <span class="prog-tag"><i class="fas fa-award"></i> شهادة معتمدة</span>
+    </div>
+  </div>
+
+</div>
+
+    <div style="text-align:center;margin-top:44px">
+      <a href="programs.html" class="btn btn-gold btn-lg reveal">
+        <i class="fas fa-th-list"></i> استعرضي جميع البرامج
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ✦ قسم الخدمات ✦ -->
+<section class="services-section islamic-bg" id="services">
+  <div class="services-inner">
+    <div class="services-grid">
+
+      <div>
+        <div class="section-badge"><i class="fas fa-list-check"></i> خدماتنا</div>
+        <h2 class="services-list-title">تقدم المقرأة برامج متنوعة تشمل</h2>
+        <p class="services-list-sub">منظومة متكاملة من الخدمات التعليمية القرآنية للنساء</p>
+
+        <div class="service-item reveal">
+          <div class="service-icon"><i class="fas fa-microphone"></i></div>
+          <div class="service-text">تعليم وتصحيح التلاوة للنساء عن بُعد</div>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-icon"><i class="fas fa-volume-high"></i></div>
+          <div class="service-text">دورات متخصصة في التجويد وفروعه</div>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-icon"><i class="fas fa-scroll"></i></div>
+          <div class="service-text">برامج تأهيل مجازات في القراءات</div>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-icon"><i class="fas fa-kaaba"></i></div>
+          <div class="service-text">حلقات تثبيت ومراجعة الحفظ</div>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-icon"><i class="fas fa-mosque"></i></div>
+          <div class="service-text">برامج تأصيل في علم القراءات والرسم والضبط</div>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-icon"><i class="fas fa-handshake"></i></div>
+          <div class="service-text">لقاءات نوعية مع المتخصصين في علوم القرآن</div>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-icon"><i class="fas fa-medal"></i></div>
+          <div class="service-text">إقامة المسابقات والبرامج المتعلقة بالتلاوة في مواسم الخير</div>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-icon"><i class="fas fa-certificate"></i></div>
+          <div class="service-text">إتاحة الحصول على شهادات الحضور والاجتياز والإجازات</div>
+        </div>
+      </div>
+
+      <div class="services-aside">
+        <div class="aside-card reveal" style="margin-bottom:24px">
+          <span class="aside-card-icon"><i class="fas fa-scroll"></i></span>
+          <h3>إجازات بأسانيد متصلة</h3>
+          <p>نمنح الإجازات القرآنية بأسانيد متصلة إلى النبي ﷺ وفق أعلى معايير الضبط والإتقان.</p>
+        </div>
+
+        <div class="aside-stat reveal">
+          <div class="aside-stat-num">8</div>
+          <div class="aside-stat-info">
+            <span class="title">برامج تعليمية</span>
+            <span class="sub">منظومة متكاملة<br>لخدمة القرآن وأهله</span>
+          </div>
+        </div>
+
+        <div class="aside-card reveal" style="margin-top:24px">
+          <span class="aside-card-icon"><i class="fas fa-mosque"></i></span>
+          <h3>تعليم عن بُعد</h3>
+          <p>حلقات تفاعلية مباشرة عبر الإنترنت بأعلى جودة، لخدمة الطالبات في كل مكان.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ✦ شريط الإحصاءات الذهبي ✦ -->
+<div class="counter-strip">
+  <div class="counter-inner">
+    <div class="counter-row">
+      <div class="counter-cell">
+        <span class="cnum" data-target="15">15</span>
+        <span class="clbl">معلمة مجازة</span>
+      </div>
+      <div class="counter-cell">
+        <span class="cnum" data-target="10">10</span>
+        <span class="clbl">قراءات متواترة</span>
+      </div>
+      <div class="counter-cell">
+        <span class="cnum" data-target="30">30+</span>
+        <span class="clbl">برنامجًا تعليميًا</span>
+      </div>
+      <div class="counter-cell">
+        <span class="cnum" data-target="100">100+</span>
+        <span class="clbl">إجازة ممنوحة</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ✦ قسم الانضمام - بدون صور QR ✦ -->
+<section class="contact-section" id="join">
+  <div class="contact-inner">
+    <div class="sec-header reveal" style="margin-bottom:48px">
+      <div class="section-badge" style="background:rgba(61,43,31,.1);border-color:rgba(197,160,89,.35);color:var(--brown-dark);">
+        <i class="fas fa-paper-plane" style="color:var(--gold-primary)"></i> انضمي إلينا
+      </div>
+      <h2 style="color:var(--brown-deep)">للإنضمام لقناة المقرأة</h2>
+      <div class="gold-line"></div>
+      <p>تابعي أحدث الأخبار والبرامج والتلاوات عبر قنوات التواصل</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="join-card reveal">
+        <span class="join-icon">📿</span>
+        <h3>للإنضمام لقناة المقرأة<br>على الواتس أو التليجرام</h3>
+        <p>
+          انضمي إلى مجتمعنا القرآني وكوني على اطلاع دائم
+          بكل جديد من برامج ودروس وتلاوات مقرأة غِنديات
+        </p>
+        <div class="join-channels">
+          <a href="https://wa.me/966542337488" target="_blank" class="channel-btn channel-wa">
+            <i class="fab fa-whatsapp"></i> واتساب (0542337488)
+          </a>
+          <a href="https://whatsapp.com/channel/0029VaEqDf259PwQIXBaNB3G" target="_blank" class="channel-btn channel-wa" style="opacity:.85">
+            <i class="fab fa-whatsapp"></i> قناة واتساب
+          </a>
+          <a href="https://t.me/Hawaa_moussa" target="_blank" class="channel-btn channel-tg">
+            <i class="fab fa-telegram-plane"></i> تيليجرام
+          </a>
+        </div>
+      </div>
+
+      <div class="social-cards reveal">
+        <div class="social-card">
+          <div class="social-card-icon"><i class="fab fa-whatsapp"></i></div>
+          <h4>قناة واتساب</h4>
+          <p>انضمي لقناة المقرأة على واتساب لمتابعة كل جديد</p>
+          <a href="https://whatsapp.com/channel/0029VaEqDf259PwQIXBaNB3G" target="_blank" class="social-link">
+            <i class="fas fa-external-link-alt"></i> انضمي للقناة
+          </a>
+        </div>
+        <div class="social-card">
+          <div class="social-card-icon" style="background:linear-gradient(135deg,#229ED9,#1a8abf);color:#fff"><i class="fab fa-telegram-plane"></i></div>
+          <h4>قناة تيليجرام</h4>
+          <p>تابعي آخر الأخبار والبرامج والإعلانات</p>
+          <a href="https://t.me/Hawaa_moussa" target="_blank" class="social-link">
+            <i class="fas fa-external-link-alt"></i> تابعي القناة
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✦ الفوتر ✦ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="غِنديات" onerror="this.style.display='none'">
+          <div>
+            <span class="footer-brand-name"><span class="fbrand-w">غِنديات</span><span class="fbrand-g"> للقراءات</span></span>
+          </div>
+        </div>
+        <p>مقرأة غِنديات لتعليم القراءات القرآنية – تابعة لجمعية طابة بالمدينة المنورة. نُعلّم القراءات العشر بأسانيد متصلة بإشراف معلمات مجازات.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/966542337488" target="_blank" class="social-btn social-wa" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://whatsapp.com/channel/0029VaEqDf259PwQIXBaNB3G" target="_blank" class="social-btn social-wa" title="قناة واتساب"><i class="fas fa-broadcast-tower"></i></a>
+          <a href="https://t.me/Hawaa_moussa" target="_blank" class="social-btn social-tg" title="تيليجرام"><i class="fab fa-telegram-plane"></i></a>
+          <a href="https://www.tiktok.com/@omgansmab1m" target="_blank" class="social-btn" title="تيك توك" style="background:rgba(255,255,255,.07);border-color:rgba(197,160,89,.25)"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>الروابط السريعة</h5>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+          <li><a href="programs.html"><i class="fas fa-chevron-left"></i> البرامج التعليمية</a></li>
+          <li><a href="sheikhs.html"><i class="fas fa-chevron-left"></i> المعلمات والتلاوات</a></li>
+          <li><a href="recitations.html"><i class="fas fa-chevron-left"></i> القراءات</a></li>
+          <li><a href="certificates.html"><i class="fas fa-chevron-left"></i> الشهادات</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+  <h5>البرامج</h5>
+  <ul>
+    <li><a href="programs.html"><i class="fas fa-chevron-left"></i> تعليم وتصحيح التلاوة</a></li>
+    <li><a href="programs.html"><i class="fas fa-chevron-left"></i> برامج تأهيل مجازات</a></li>
+    <li><a href="programs.html"><i class="fas fa-chevron-left"></i> برامج تأصيل علم القراءات</a></li>
+    <li><a href="programs.html"><i class="fas fa-chevron-left"></i> شهادات وإجازات</a></li>
+  </ul>
+</div>
+
+      <div class="footer-col">
+        <h5>تواصلي معنا</h5>
+        <ul>
+          <li><a href="https://wa.me/966542337488" target="_blank"><i class="fab fa-whatsapp"></i> واتساب: 0542337488</a></li>
+          <li><a href="https://whatsapp.com/channel/0029VaEqDf259PwQIXBaNB3G" target="_blank"><i class="fas fa-broadcast-tower"></i> قناة واتساب</a></li>
+          <li><a href="https://t.me/Hawaa_moussa" target="_blank"><i class="fab fa-telegram-plane"></i> تيليجرام</a></li>
+          <li><a href="https://www.tiktok.com/@omgansmab1m" target="_blank"><i class="fab fa-tiktok"></i> تيك توك</a></li>
+        </ul>
+        <div style="margin-top:20px;padding:16px;background:rgba(197,160,89,.08);border-radius:var(--radius-lg);border:1px solid rgba(197,160,89,.2)">
+          <div style="font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:6px">ساعات التواصل</div>
+          <div style="font-size:.9rem;color:var(--gold-light);font-weight:700">من الأحد إلى الخميس</div>
+          <div style="font-size:.82rem;color:rgba(255,255,255,.65)">9 صباحًا – 10 مساءً</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 مقرأة غِنديات لتعليم القراءات. جميع الحقوق محفوظة.</p>
+      <p>تابعة لـ <a href="#">جمعية طابة</a> – المدينة المنورة</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('mainNav');
+const toggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+toggle?.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('#navLinks a').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  if (!target || isNaN(target)) return;
+  const dur = 1800, step = 20;
+  const inc = Math.ceil(target / (dur / step));
+  let cur = 0;
+  const timer = setInterval(() => {
+    cur = Math.min(cur + inc, target);
+    el.textContent = cur + (el.closest('.counter-cell') ? (target >= 30 ? '+' : '') : '');
+    if (cur >= target) clearInterval(timer);
+  }, step);
+}
+const cntObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('[data-target]').forEach(animateCounter);
+      cntObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.hstat, .counter-strip').forEach(el => cntObserver.observe(el));
+
+const fills = document.querySelectorAll('.prog-bar-fill');
+const fillObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.width = e.target.style.width;
+      fillObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+fills.forEach(f => { const w = f.style.width; f.style.width = '0'; fillObs.observe(f); setTimeout(()=>f.style.width=w,300); });
+
+console.log('✦ مقرأة غِنديات – الصفحة الرئيسية جاهزة ✓');
+</script>
+</body>
+</html>

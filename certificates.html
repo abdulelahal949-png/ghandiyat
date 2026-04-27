@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="شهادات وإجازات مقرأة غِنديات – إجازات نصية وأدائية بأسانيد متصلة">
+<title>الشهادات والإجازات | مقرأة غِنديات</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;800&family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --brown-deep:     #2A1A0E;
+  --brown-dark:     #3D2B1F;
+  --brown-medium:   #5C3D24;
+  --brown-light:    #7A5535;
+  --gold-primary:   #C5A059;
+  --gold-light:     #D4B578;
+  --gold-lighter:   #E8D0A0;
+  --gold-shine:     #F0DFB0;
+  --gold-dark:      #9E7A3A;
+  --gold-gradient:  linear-gradient(135deg, #9E7A3A 0%, #C5A059 40%, #E8D0A0 60%, #C5A059 100%);
+  --cream:          #FBF6EE;
+  --cream-light:    #FFFDF8;
+  --cream-dark:     #F5EDE0;
+  --white:          #FFFFFF;
+  --text-on-dark:   rgba(255,255,255,.92);
+  --text-medium:    #5C3D24;
+  --text-muted:     #7A5535;
+  --shadow-gold:    0 4px 24px rgba(197,160,89,.35);
+  --shadow-gold-lg: 0 8px 48px rgba(197,160,89,.45);
+  --shadow-dark:    0 12px 48px rgba(0,0,0,.4);
+  --shadow-md:      0 4px 24px rgba(0,0,0,.12);
+  --shadow-lg:      0 12px 48px rgba(0,0,0,.25);
+  --radius-sm:  8px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --radius-xl:  36px;
+  --radius-full:9999px;
+  --nav-h:      80px;
+  --transition: all .3s cubic-bezier(.4,0,.2,1);
+  --olive-dark: #3D4F1A;
+  --olive-primary: #8BA84C;
+  --olive-lighter: #C5D89A;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Cairo', 'Amiri', sans-serif;
+  direction: rtl; text-align: right;
+  background: var(--brown-deep);
+  color: var(--text-on-dark);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+ul, ol { list-style: none; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--brown-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 3px; }
+
+.container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px; border-radius: var(--radius-full);
+  font-weight: 700; font-size: 1rem; font-family: 'Cairo', sans-serif;
+  transition: var(--transition); cursor: pointer; border: none;
+}
+.btn-primary {
+  background: var(--gold-gradient);
+  color: var(--brown-deep);
+  box-shadow: var(--shadow-gold);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-gold-lg); }
+.btn-dark {
+  background: var(--brown-dark);
+  color: var(--gold-light);
+  border: 2px solid rgba(197,160,89,.3);
+}
+.btn-dark:hover { transform: translateY(-2px); border-color: var(--gold-primary); }
+.btn-olive {
+  background: var(--olive-primary);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(139,168,76,.35);
+}
+.btn-olive:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(139,168,76,.45); }
+.btn-sm { padding: 10px 24px; font-size: .9rem; }
+.btn-lg { padding: 18px 48px; font-size: 1.1rem; }
+
+.gold-divider {
+  width: 80px; height: 3px;
+  background: var(--gold-gradient);
+  border-radius: var(--radius-full);
+  margin: 16px auto;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(197,160,89,.15);
+  border: 1px solid rgba(197,160,89,.4);
+  color: var(--gold-light);
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  font-size: .82rem; font-weight: 700;
+}
+.hero-badge i { color: var(--gold-primary); }
+
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(197,160,89,.15);
+  border: 1px solid rgba(197,160,89,.4);
+  color: var(--gold-dark);
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  font-size: .82rem; font-weight: 700;
+  margin-bottom: 12px;
+}
+.section-label i { color: var(--gold-primary); }
+
+/* ═══ شريط الإعلانات ═══ */
+.announcements-bar {
+  background: var(--gold-gradient);
+  padding: 12px 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.announcements-bar .ticker {
+  display: flex;
+  gap: 60px;
+  animation: tickerMove 30s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+.announcements-bar .ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--brown-deep);
+  flex-shrink: 0;
+}
+.announcements-bar .ticker-item i { color: var(--brown-dark); }
+@keyframes tickerMove {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ═══ شريط التنقل ═══ */
+.navbar {
+  position: fixed; top: 0; right: 0; left: 0; z-index: 1000;
+  height: var(--nav-h);
+  background: rgba(42,26,14,.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(197,160,89,.2);
+  box-shadow: 0 4px 24px rgba(0,0,0,.3);
+  transition: var(--transition);
+}
+.navbar.scrolled { background: rgba(42,26,14,1); border-bottom-color: rgba(197,160,89,.4); }
+.nav-container {
+  max-width: 1300px; margin: 0 auto; padding: 0 24px; height: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.nav-logo { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.nav-logo img {
+  width: 52px; height: 52px; object-fit: contain;
+  border-radius: var(--radius-full);
+  border: 2px solid rgba(197,160,89,.4);
+  box-shadow: var(--shadow-gold);
+}
+.nav-logo-text { line-height: 1.25; }
+.nav-logo-text .brand { display: block; font-family: 'Scheherazade New', serif; font-size: 1.15rem; font-weight: 700; }
+.brand-ghan { color: #FFFFFF; }
+.brand-dyat { color: var(--gold-light); }
+.nav-logo-text .brand-sub { font-size: .7rem; color: rgba(197,160,89,.75); }
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a {
+  padding: 8px 13px; border-radius: var(--radius-sm);
+  font-size: .88rem; font-weight: 600;
+  color: rgba(255,255,255,.75);
+  transition: var(--transition); white-space: nowrap;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold-light); background: rgba(197,160,89,.1); }
+.nav-cta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-toggle {
+  display: none; width: 40px; height: 40px;
+  border-radius: var(--radius-sm); background: rgba(197,160,89,.1);
+  align-items: center; justify-content: center; flex-direction: column; gap: 5px;
+  border: 1px solid rgba(197,160,89,.3); cursor: pointer;
+}
+.nav-toggle span { display: block; width: 20px; height: 2px; background: var(--gold-light); border-radius: 2px; transition: var(--transition); }
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ═══ هيرو ═══ */
+.page-hero {
+  background: linear-gradient(160deg, #1A0D08 0%, #2A1A0E 45%, #3D2B1F 100%);
+  padding: calc(var(--nav-h) + 80px) 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 3px solid rgba(197,160,89,.4);
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 8 L72 28 L72 52 L40 72 L8 52 L8 28Z' fill='none' stroke='rgba(197,160,89,0.15)' stroke-width='1'/%3E%3C/svg%3E");
+}
+.page-hero h1 {
+  font-family: 'Scheherazade New', serif;
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  color: #FFFFFF;
+  position: relative;
+  text-shadow: 0 2px 20px rgba(0,0,0,.5);
+}
+.page-hero p {
+  color: rgba(255,255,255,.88);
+  max-width: 600px;
+  margin: 16px auto 0;
+  position: relative;
+  font-size: clamp(.85rem, 2vw, 1rem);
+}
+
+/* ═══ الأقسام ═══ */
+.section { padding: 80px 0; background: var(--cream); }
+
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.section-header h2 {
+  font-family: 'Scheherazade New', serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: var(--brown-deep);
+  margin-bottom: 8px;
+}
+.section-header p { color: var(--text-medium); font-size: clamp(.85rem, 2vw, 1rem); }
+
+/* ═══ بطاقة الإجازة ═══ */
+.ijaza-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+.ijaza-card {
+  background: var(--cream-light);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(197,160,89,.35);
+  transition: var(--transition);
+  position: relative;
+}
+.ijaza-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; left: 0;
+  height: 5px;
+  background: var(--gold-gradient);
+}
+.ijaza-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-gold-lg);
+  border-color: var(--gold-primary);
+}
+
+.ijaza-header {
+  background: linear-gradient(135deg, #2A1A0E, #3D2B1F);
+  padding: 36px 24px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.ijaza-header::before {
+  content: '❖';
+  position: absolute;
+  top: 16px; right: 20px;
+  font-size: 2rem;
+  color: rgba(197,160,89,.35);
+}
+.ijaza-header::after {
+  content: '❖';
+  position: absolute;
+  bottom: 16px; left: 20px;
+  font-size: 2rem;
+  color: rgba(197,160,89,.35);
+}
+.ijaza-icon {
+  width: 80px; height: 80px;
+  border-radius: var(--radius-full);
+  background: var(--gold-gradient);
+  margin: 0 auto 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  color: var(--brown-dark);
+  box-shadow: var(--shadow-gold-lg);
+}
+.ijaza-header h3 {
+  font-family: 'Scheherazade New', serif;
+  color: var(--gold-lighter);
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  margin-bottom: 8px;
+}
+.ijaza-type-badge {
+  display: inline-block;
+  background: rgba(197,160,89,.25);
+  border: 1.5px solid rgba(197,160,89,.55);
+  color: var(--gold-light);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 5px 16px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(197,160,89,.2);
+}
+
+.ijaza-body { padding: 24px; }
+.ijaza-desc {
+  font-size: 0.95rem;
+  color: var(--text-medium);
+  line-height: 2;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.ijaza-features { list-style: none; }
+.ijaza-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(197,160,89,.12);
+  font-size: 0.9rem;
+  color: var(--text-medium);
+}
+.ijaza-features li:last-child { border-bottom: none; }
+.ijaza-features li i { color: var(--gold-primary); margin-top: 3px; flex-shrink: 0; }
+.ijaza-footer {
+  padding: 20px 24px;
+  border-top: 1.5px solid rgba(197,160,89,.15);
+  text-align: center;
+  background: var(--cream-dark);
+}
+
+/* ═══ معاينة الشهادة ═══ */
+.cert-showcase {
+  background: linear-gradient(135deg, var(--cream-light), var(--cream-dark));
+  border: 3px solid rgba(197,160,89,.7);
+  border-radius: var(--radius-xl);
+  padding: 48px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-gold-lg);
+  max-width: 100%;
+}
+.cert-showcase::before {
+  content: '';
+  position: absolute; inset: 12px;
+  border: 1.5px solid rgba(197,160,89,.35);
+  border-radius: calc(var(--radius-xl) - 8px);
+  pointer-events: none;
+}
+.cert-corner {
+  position: absolute;
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  color: rgba(197,160,89,.25);
+  font-family: 'Scheherazade New', serif;
+}
+.cert-corner.tl { top: 16px; right: 16px; }
+.cert-corner.tr { top: 16px; left: 16px; }
+.cert-corner.bl { bottom: 16px; right: 16px; }
+.cert-corner.br { bottom: 16px; left: 16px; }
+.cert-header-text {
+  font-family: 'Scheherazade New', serif;
+  color: var(--brown-dark);
+  margin-bottom: 24px;
+  position: relative; z-index: 1;
+}
+.cert-header-text .bismillah {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  color: var(--gold-dark);
+  display: block;
+  margin-bottom: 8px;
+}
+.cert-header-text .maqra {
+  font-size: clamp(.8rem, 2vw, 1.1rem);
+  color: var(--brown-light);
+}
+.cert-title {
+  font-family: 'Scheherazade New', serif;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--brown-dark);
+  border-top: 2px solid var(--gold-primary);
+  border-bottom: 2px solid var(--gold-primary);
+  padding: 16px 0;
+  margin: 20px 0;
+  position: relative; z-index: 1;
+}
+.cert-body-text {
+  font-size: clamp(.85rem, 2vw, 1rem);
+  color: var(--text-medium);
+  line-height: 2.2;
+  font-family: 'Amiri', serif;
+  position: relative; z-index: 1;
+}
+.cert-student-line {
+  font-family: 'Scheherazade New', serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: var(--brown-dark);
+  border-bottom: 2px solid var(--gold-primary);
+  display: inline-block;
+  min-width: 150px;
+  max-width: 90%;
+  margin: 8px 0;
+  padding-bottom: 4px;
+  position: relative; z-index: 1;
+}
+.cert-seal {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.cert-seal-item {
+  text-align: center;
+  flex: 0 0 auto;
+}
+.cert-seal-item .seal-circle {
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  border: 2px dashed var(--gold-primary);
+  margin: 0 auto 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  color: var(--gold-dark);
+}
+.cert-seal-item .seal-label { font-size: 0.8rem; color: var(--text-muted); }
+
+/* ═══ قوالب ═══ */
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.certificate-card {
+  background: var(--cream-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1.5px solid rgba(197,160,89,.18);
+  transition: var(--transition);
+}
+.certificate-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-gold-lg);
+  border-color: rgba(197,160,89,.5);
+}
+.certificate-preview {
+  height: 180px;
+  background: linear-gradient(135deg, var(--cream-dark), var(--cream-light));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  color: var(--gold-primary);
+}
+.certificate-body {
+  padding: 20px;
+  text-align: center;
+}
+.certificate-type {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(197,160,89,.15);
+  color: var(--gold-dark);
+  margin-bottom: 8px;
+}
+.certificate-title {
+  font-family: 'Scheherazade New', serif;
+  font-size: 1.1rem;
+  color: var(--brown-dark);
+  margin-bottom: 8px;
+}
+
+/* ═══ نموذج الطلب ═══ */
+.request-form {
+  background: var(--cream-light);
+  border-radius: var(--radius-xl);
+  padding: 40px 24px;
+  box-shadow: var(--shadow-md);
+  border: 1.5px solid rgba(197,160,89,.22);
+}
+.request-form h3 { margin-bottom: 24px; }
+
+/* ═══ فوتر ═══ */
+.site-footer {
+  background: var(--brown-deep);
+  border-top: 3px solid rgba(197,160,89,.3);
+  padding: 24px 0;
+}
+.footer-text { text-align: center; font-size: .85rem; color: rgba(255,255,255,.5); }
+
+/* ═══ أزرار عائمة ═══ */
+.floating-contact {
+  position: fixed; bottom: 28px; right: 28px; z-index: 500;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.float-btn {
+  width: 52px; height: 52px; border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; box-shadow: 0 6px 24px rgba(0,0,0,.3);
+  transition: var(--transition);
+}
+.float-btn:hover { transform: scale(1.12) translateY(-3px); }
+.float-wa { background: #25D366; color: #fff; }
+.float-tg { background: #229ED9; color: #fff; }
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+}
+.empty-state i { font-size: 2rem; color: var(--gold-primary); }
+.empty-state p { margin-top: 12px; color: var(--text-muted); }
+
+/* ═══ تجاوب ═══ */
+@media (max-width: 992px) {
+  .ijaza-grid { grid-template-columns: 1fr; max-width: 550px; margin: 0 auto 64px; }
+}
+
+@media (max-width: 768px) {
+  :root { --nav-h: 68px; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: var(--nav-h); right: 0; left: 0; background: rgba(42,26,14,.99); padding: 16px; gap: 4px; border-bottom: 1px solid rgba(197,160,89,.2); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: flex; }
+  .page-hero { padding: calc(var(--nav-h) + 40px) 0 40px; }
+  .section { padding: 48px 0; }
+  .cert-showcase { padding: 32px 16px; }
+  .cert-corner { font-size: 1.2rem; }
+  .cert-corner.tl { top: 8px; right: 8px; }
+  .cert-corner.tr { top: 8px; left: 8px; }
+  .cert-corner.bl { bottom: 8px; right: 8px; }
+  .cert-corner.br { bottom: 8px; left: 8px; }
+  .cert-seal { gap: 16px; }
+  .cert-seal-item .seal-circle { width: 60px; height: 60px; }
+  .template-grid { grid-template-columns: 1fr; }
+  .ijaza-card { max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .btn-lg { padding: 14px 28px; font-size: .95rem; }
+  .btn { padding: 12px 24px; font-size: .9rem; }
+  .ijaza-grid { gap: 20px; }
+  .cert-showcase { padding: 24px 12px; }
+  .cert-student-line { min-width: 120px; }
+  .floating-contact { bottom: 16px; right: 16px; }
+  .float-btn { width: 44px; height: 44px; font-size: 1.1rem; }
+  .request-form { padding: 24px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ✦ شريط الإعلانات ✦ -->
+<div class="announcements-bar">
+  <div class="ticker">
+    <span class="ticker-item"><i class="fas fa-award"></i> إجازات بأسانيد متصلة إلى النبي ﷺ</span>
+    <span class="ticker-item"><i class="fas fa-star"></i> مقرأة غِنديات – المدينة المنورة</span>
+    <span class="ticker-item"><i class="fas fa-award"></i> إجازات بأسانيد متصلة إلى النبي ﷺ</span>
+    <span class="ticker-item"><i class="fas fa-star"></i> مقرأة غِنديات – المدينة المنورة</span>
+  </div>
+</div>
+
+<!-- ✦ شريط التنقل ✦ -->
+<nav class="navbar" id="mainNav">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="غِنديات" onerror="this.style.display='none'">
+      <div class="nav-logo-text">
+        <span class="brand"><span class="brand-ghan">غِنديات</span><span class="brand-dyat"> للقراءات</span></span>
+        <span class="brand-sub">مقرأة تعليم القراءات القرآنية</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="programs.html">البرامج</a></li>
+      <li><a href="sheikhs.html">المعلمات والتلاوات</a></li>
+      <li><a href="recitations.html">القراءات</a></li>
+      <li><a href="certificates.html" class="active">الشهادات</a></li>
+      <li><a href="contact.html">تواصل</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-envelope"></i> تواصل</a>
+      <button class="nav-toggle" id="navToggle" aria-label="القائمة">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ✦ هيرو ✦ -->
+<div class="page-hero">
+  <div class="container">
+    <div class="hero-badge" style="justify-content:center;margin:0 auto 16px;width:fit-content">
+      <i class="fas fa-award"></i> الشهادات والإجازات
+    </div>
+    <h1>إجازات نصية وأدائية معتمدة</h1>
+    <div class="gold-divider"></div>
+    <p>نُصدر إجازات بأسانيد متصلة إلى رسول الله ﷺ وفق أعلى المعايير العلمية</p>
+  </div>
+</div>
+
+<!-- ✦ أنواع الإجازات ✦ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label"><i class="fas fa-scroll"></i> أنواع الإجازات</div>
+      <h2>نوعان من الإجازات العلمية</h2>
+      <div class="gold-divider"></div>
+      <p>كل إجازة تُمنح بعد إتمام المستوى المطلوب والتحقق من الأداء والحفظ والفهم</p>
+    </div>
+
+    <div class="ijaza-grid">
+
+      <!-- الإجازة النصية -->
+      <div class="ijaza-card">
+        <div class="ijaza-header">
+          <div class="ijaza-icon"><i class="fas fa-scroll"></i></div>
+          <h3>الإجازة النصية</h3>
+          <div class="ijaza-type-badge">Textual Ijazah</div>
+        </div>
+        <div class="ijaza-body">
+          <p class="ijaza-desc">
+            إجازة علمية رفيعة تُمنح للطالبة التي حفظت نصوص القراءات وأتقنت أصولها وفروشها
+            مع سند متصل إلى رسول الله ﷺ
+          </p>
+          <ul class="ijaza-features">
+            <li><i class="fas fa-check-circle"></i> إجازة بالقراءات العشر من طريق الشاطبية والدرة</li>
+            <li><i class="fas fa-check-circle"></i> حفظ نصوص الشاطبية والدرة</li>
+            <li><i class="fas fa-check-circle"></i> إتقان أصول وفروش القراءات</li>
+            <li><i class="fas fa-check-circle"></i> سند متصل بالنبي ﷺ</li>
+            <li><i class="fas fa-check-circle"></i> شهادة مكتوبة موقّعة ومختومة</li>
+            <li><i class="fas fa-check-circle"></i> الحق في إجازة الطالبات</li>
+          </ul>
+        </div>
+        <div class="ijaza-footer">
+          <a href="contact.html" class="btn btn-primary">
+            <i class="fas fa-envelope"></i> طلب إجازة دراية
+          </a>
+        </div>
+      </div>
+
+      <!-- إجازة رواية -->
+      <div class="ijaza-card">
+        <div class="ijaza-header" style="background:linear-gradient(135deg,var(--olive-dark),#2D3B10)">
+          <div class="ijaza-icon" style="background:linear-gradient(135deg,var(--olive-lighter),var(--olive-primary));color:#fff">
+            <i class="fas fa-microphone"></i>
+          </div>
+          <h3 style="color:var(--cream-light)">إجازة رواية</h3>
+          <div class="ijaza-type-badge" style="background:rgba(168,184,112,.2);border-color:rgba(168,184,112,.4);color:#C8E6C9">
+            Performance Ijazah
+          </div>
+        </div>
+        <div class="ijaza-body">
+          <p class="ijaza-desc">
+            إجازة عملية تطبيقية تُمنح للطالبة التي أتقنت الأداء التطبيقي للقراءات على معلمة متخصصة
+            بشكل صوتي ومباشر
+          </p>
+          <ul class="ijaza-features">
+            <li><i class="fas fa-check-circle"></i> إجازة بالأداء التطبيقي للقراءات</li>
+            <li><i class="fas fa-check-circle"></i> تلاوة مصحح عليها مباشرة</li>
+            <li><i class="fas fa-check-circle"></i> ختمة أو جزء كامل بالقراءة</li>
+            <li><i class="fas fa-check-circle"></i> سند سماعي متصل</li>
+            <li><i class="fas fa-check-circle"></i> شهادة أداء موثّقة</li>
+            <li><i class="fas fa-check-circle"></i> مناسبة لجميع المستويات</li>
+          </ul>
+        </div>
+        <div class="ijaza-footer">
+          <a href="contact.html" class="btn btn-olive">
+            <i class="fas fa-envelope"></i> طلب إجازة رواية
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- معاينة شهادة -->
+    <div class="section-header">
+      <div class="section-label"><i class="fas fa-eye"></i> معاينة</div>
+      <h2>نموذج شهادة غِنديات</h2>
+      <div class="gold-divider"></div>
+    </div>
+
+    <div class="cert-showcase">
+      <div class="cert-corner tl">❖</div>
+      <div class="cert-corner tr">❖</div>
+      <div class="cert-corner bl">❖</div>
+      <div class="cert-corner br">❖</div>
+
+      <div class="cert-header-text">
+        <span class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+        <div style="margin-bottom:4px">
+          <img src="images/logo.png" alt="غِنديات" style="width:60px;margin:0 auto 8px;display:block;border-radius:50%;border:2px solid var(--gold-lighter)" onerror="this.style.display='none'">
+        </div>
+        <span class="maqra">مقرأة غِنديات لتعليم القراءات – المدينة المنورة</span>
+      </div>
+
+      <div class="cert-title">إجازة دراية بالقراءات العشر</div>
+
+      <p class="cert-body-text">
+        بعون الله وتوفيقه، يُشهد بأن الطالبة الكريمة
+      </p>
+      <div class="cert-student-line">اسم الطالبة</div>
+      <p class="cert-body-text" style="margin-top:16px">
+        قد أتمّت حفظ وإتقان القراءات العشر من طريقَي الشاطبية والدرة،<br>
+        وأجزناها بما أجازنا به مشايخنا، بسند متصل إلى رسول الله ﷺ.
+      </p>
+
+      <div style="margin-top:24px;padding:16px;background:rgba(197,160,89,.08);border-radius:var(--radius-md);border:1px solid rgba(197,160,89,.22);position:relative;z-index:1">
+        <p style="font-size:.88rem;color:var(--text-muted)">
+          وكان ذلك في: _____ / _____ هـ &nbsp;|&nbsp; الموافق: _____ / _____ م
+        </p>
+      </div>
+
+      <div class="cert-seal">
+        <div class="cert-seal-item">
+          <div class="seal-circle"><i class="fas fa-stamp" style="font-size:1.2rem;color:var(--gold-primary)"></i></div>
+          <div class="seal-label">توقيع المشرفة</div>
+        </div>
+        <div class="cert-seal-item">
+          <div class="seal-circle" style="background:rgba(197,160,89,.08)">
+            <span style="font-family:'Scheherazade New',serif;color:var(--gold-dark);font-size:.65rem">مقرأة<br>غِنديات</span>
+          </div>
+          <div class="seal-label">ختم المقرأة</div>
+        </div>
+        <div class="cert-seal-item">
+          <div class="seal-circle"><i class="fas fa-certificate" style="font-size:1.2rem;color:var(--gold-primary)"></i></div>
+          <div class="seal-label">رقم الشهادة</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- قوالب من API -->
+    
+    <div class="template-grid" id="certTemplatesGrid">
+      <div class="empty-state">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>جاري التحميل...</p>
+      </div>
+    </div>
+
+    <!-- طلب -->
+    <div style="margin-top:64px">
+      <div class="request-form">
+        <h3 style="text-align:center">
+          <i class="fas fa-paper-plane" style="color:var(--gold-primary)"></i>
+          طلب إجازة أو شهادة
+        </h3>
+        <div class="gold-divider"></div>
+        <p style="text-align:center;margin-bottom:28px;color:var(--text-medium)">
+          تواصلي معنا لتقديم طلب الإجازة وسيتم التواصل معكِ من قِبَل فريق مقرأة غِنديات
+        </p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a href="https://wa.me/966542337488?text=أرغب في طلب إجازة من مقرأة غِنديات" target="_blank" class="btn btn-lg"
+            style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 4px 16px rgba(37,211,102,.35)">
+            <i class="fab fa-whatsapp"></i> طلب عبر واتساب
+          </a>
+          <a href="contact.html" class="btn btn-dark btn-lg">
+            <i class="fas fa-envelope"></i> نموذج الطلب
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✦ الفوتر ✦ -->
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-text">© 2025 مقرأة غِنديات لتعليم القراءات – تابعة لجمعية طابة – المدينة المنورة</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+      <a href="https://wa.me/966542337488" target="_blank" class="social-btn" title="واتساب" style="color:var(--gold-primary);background:rgba(197,160,89,.1);border:1px solid rgba(197,160,89,.3);width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://whatsapp.com/channel/0029VaEqDf259PwQIXBaNB3G" target="_blank" class="social-btn" title="قناة واتساب" style="color:var(--gold-primary);background:rgba(197,160,89,.1);border:1px solid rgba(197,160,89,.3);width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem"><i class="fas fa-broadcast-tower"></i></a>
+      <a href="https://t.me/Hawaa_moussa" target="_blank" class="social-btn" title="تيليجرام" style="color:var(--gold-primary);background:rgba(197,160,89,.1);border:1px solid rgba(197,160,89,.3);width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem"><i class="fab fa-telegram-plane"></i></a>
+      <a href="https://www.tiktok.com/@omgansmab1m" target="_blank" class="social-btn" title="تيك توك" style="color:var(--gold-primary);background:rgba(197,160,89,.1);border:1px solid rgba(197,160,89,.3);width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+</footer>
+
+<!-- ✦ أزرار عائمة ✦ -->
+<div class="floating-contact">
+  <a href="https://wa.me/966542337488" target="_blank" class="float-btn float-wa" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://t.me/Hawaa_moussa" target="_blank" class="float-btn float-tg" title="تيليجرام"><i class="fab fa-telegram-plane"></i></a>
+  <a href="https://www.tiktok.com/@omgansmab1m" target="_blank" class="float-btn" title="تيك توك" style="background:#010101;border-color:rgba(255,255,255,.3)"><i class="fab fa-tiktok"></i></a>
+</div>
+
+<script>
+const nav = document.getElementById('mainNav');
+const toggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+toggle?.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('#navLinks a').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+async function loadCertTemplates() {
+  try {
+    const res = await fetch('tables/certificate_templates?limit=50');
+    const data = await res.json();
+    const templates = (data.data || []).filter(t => t.status !== 'inactive');
+    const grid = document.getElementById('certTemplatesGrid');
+    if (templates.length === 0) {
+      grid.innerHTML = '<div class="empty-state"><i class="fas fa-award"></i><p>سيتم رفع قوالب الشهادات قريبًا</p></div>';
+      return;
+    }
+    const typeMap = {
+      'اجازة_نصية':'إجازة دراية','اجازة_ادائية':'إجازة رواية',
+      'شهادة_اتمام':'شهادة إتمام','شهادة_حضور':'شهادة حضور'
+    };
+    grid.innerHTML = templates.map(t => `
+      <div class="certificate-card">
+        ${t.template_url
+          ? `<div class="certificate-preview"><img src="${t.template_url}" alt="${t.name}" style="width:100%;height:100%;object-fit:cover"></div>`
+          : `<div class="certificate-preview"><i class="fas fa-award"></i></div>`}
+        <div class="certificate-body">
+          <div class="certificate-type">${typeMap[t.type]||t.type||''}</div>
+          <h4 class="certificate-title">${t.name||''}</h4>
+          <p style="font-size:.88rem;color:var(--text-muted)">${t.description||''}</p>
+          <a href="contact.html" class="btn btn-primary btn-sm" style="margin-top:12px">
+            <i class="fas fa-paper-plane"></i> طلب هذه الشهادة
+          </a>
+        </div>
+      </div>`).join('');
+  } catch(e) {
+    document.getElementById('certTemplatesGrid').innerHTML =
+      '<div class="empty-state"><i class="fas fa-award"></i><p>سيتم رفع قوالب الشهادات قريبًا</p></div>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadCertTemplates);
+</script>
+</body>
+</html>
