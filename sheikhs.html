@@ -24,10 +24,12 @@ html{scroll-behavior:smooth;font-size:16px}
 body{font-family:'Cairo','Amiri',sans-serif;direction:rtl;text-align:right;background:var(--brown-deep);color:var(--text-on-dark);line-height:1.8;overflow-x:hidden}
 img{max-width:100%;display:block}a{text-decoration:none;color:inherit;transition:var(--transition)}ul,ol{list-style:none}
 .container{max-width:1300px;margin:0 auto;padding:0 24px}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:var(--radius-full);font-weight:700;font-size:1rem;font-family:'Cairo',sans-serif;transition:var(--transition);cursor:pointer;border:none}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:var(--radius-full);font-weight:700;font-size:1rem;font-family:'Cairo',sans-serif;transition:var(--transition);cursor:pointer;border:none;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,.2);border-radius:50%;transition:width .4s ease,height .4s ease,top .4s ease,left .4s ease}
+.btn:active::after{width:300px;height:300px;top:-100px;left:-100px}
 .btn-primary{background:var(--gold-gradient);color:var(--brown-deep);box-shadow:var(--shadow-gold)}.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-gold-lg)}.btn-sm{padding:10px 24px;font-size:.9rem}
 .gold-divider{width:80px;height:3px;background:var(--gold-gradient);border-radius:var(--radius-full);margin:16px auto}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(197,160,89,.15);border:1px solid rgba(197,160,89,.4);color:var(--gold-light);padding:6px 18px;border-radius:var(--radius-full);font-size:.82rem;font-weight:700}.hero-badge i{color:var(--gold-primary)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(197,160,89,.15);border:1px solid rgba(197,160,89,.4);color:var(--gold-light);padding:6px 18px;border-radius:var(--radius-full);font-size:.82rem;font-weight:700;animation:pulseBadge 2.5s ease-in-out infinite}@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(197,160,89,.4)}50%{box-shadow:0 0 0 12px rgba(197,160,89,0)}}
 .section-label{display:inline-flex;align-items:center;gap:8px;background:rgba(197,160,89,.15);border:1px solid rgba(197,160,89,.4);color:var(--gold-dark);padding:6px 18px;border-radius:var(--radius-full);font-size:.82rem;font-weight:700;margin-bottom:12px}.section-label i{color:var(--gold-primary)}
 .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:var(--radius-full);font-size:.75rem;font-weight:700}
 .badge-gold{background:rgba(197,160,89,.2);color:var(--gold-dark)}.badge-olive{background:rgba(139,168,76,.2);color:var(--olive-dark)}
@@ -48,18 +50,20 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit;transition
 .page-hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 8 L72 28 L72 52 L40 72 L8 52 L8 28Z' fill='none' stroke='rgba(197,160,89,0.15)' stroke-width='1'/%3E%3C/svg%3E")}
 .page-hero h1{font-family:'Scheherazade New',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#FFF;text-shadow:0 2px 20px rgba(0,0,0,.4)}
 .page-hero p{color:rgba(255,255,255,.88);max-width:600px;margin:16px auto 0}
+/* تأثير الكتابة التدريجية */
+.typing-word{display:inline-block;overflow:hidden;white-space:nowrap;animation:typing 2s steps(6) forwards;vertical-align:bottom;color:#FFF;text-shadow:0 0 15px rgba(197,160,89,.6)}@keyframes typing{0%{width:0}100%{width:auto}}
 .section{padding:80px 0;background:var(--cream)}.section-header{text-align:center;margin-bottom:48px}.section-header h2{font-family:'Scheherazade New',serif;font-size:clamp(1.4rem,3vw,2.2rem);color:var(--brown-dark);margin-bottom:8px}.section-header p{color:var(--text-medium)}
 .filters-bar{background:var(--cream-card);border-radius:var(--radius-xl);padding:20px 28px;box-shadow:var(--shadow-md);border:1.5px solid rgba(197,160,89,.25);display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:40px}
 .filter-btn{padding:9px 22px;border-radius:var(--radius-full);font-size:.88rem;font-weight:700;border:1.5px solid rgba(197,160,89,.35);background:transparent;color:var(--text-medium);cursor:pointer;transition:var(--transition)}.filter-btn.active,.filter-btn:hover{background:var(--gold-gradient);color:var(--brown-dark);border-color:var(--gold-primary);box-shadow:0 4px 16px rgba(197,160,89,.4);transform:translateY(-1px)}
-.search-input-wrap{display:flex;align-items:center;gap:8px;background:var(--cream-dark);border:1.5px solid rgba(197,160,89,.3);border-radius:var(--radius-full);padding:9px 16px;flex:1;max-width:280px}.search-input-wrap input{border:none;background:transparent;outline:none;font-size:.9rem;color:var(--text-dark);width:100%}.search-input-wrap i{color:var(--gold-dark)}
-.sheikh-detail-card{background:var(--cream-card);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-md);border:1.5px solid rgba(197,160,89,.2);transition:var(--transition);margin-bottom:32px}.sheikh-detail-card:hover{box-shadow:var(--shadow-gold-lg);border-color:rgba(197,160,89,.55);transform:translateY(-3px)}
-.sheikh-detail-header{display:grid;grid-template-columns:200px 1fr}.sheikh-detail-img{height:240px;background:linear-gradient(135deg,var(--brown-dark),var(--olive-dark));display:flex;align-items:center;justify-content:center;overflow:hidden}.sheikh-detail-img .avatar-big{font-size:5rem;color:rgba(197,160,89,.7)}
+.search-input-wrap{display:flex;align-items:center;gap:8px;background:var(--cream-dark);border:1.5px solid rgba(197,160,89,.3);border-radius:var(--radius-full);padding:9px 16px;flex:1;max-width:280px}.search-input-wrap input{border:none;background:transparent;outline:none;font-size:.9rem;color:var(--text-dark);width:100%}.search-input-wrap i{color:var(--gold-dark);animation:searchPulse 2s ease-in-out infinite}@keyframes searchPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.sheikh-detail-card{background:var(--cream-card);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-md);border:1px solid rgba(197,160,89,.2);transition:var(--transition);margin-bottom:32px;backdrop-filter:blur(5px)}.sheikh-detail-card:hover{box-shadow:0 12px 40px rgba(197,160,89,.5);border-color:rgba(197,160,89,.7);transform:translateY(-5px)}
+.sheikh-detail-header{display:grid;grid-template-columns:200px 1fr}.sheikh-detail-img{height:240px;background:linear-gradient(135deg,var(--brown-dark),var(--olive-dark));display:flex;align-items:center;justify-content:center;overflow:hidden}.sheikh-detail-img .avatar-big{font-size:5rem;color:rgba(197,160,89,.7);animation:floatAvatar 3s ease-in-out infinite}@keyframes floatAvatar{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .sheikh-detail-info{padding:28px;border-bottom:1.5px solid rgba(197,160,89,.18)}.sheikh-detail-info h3{font-family:'Scheherazade New',serif;font-size:1.6rem;color:var(--brown-dark);margin-bottom:4px}.sheikh-spec{color:var(--gold-primary);font-size:.9rem;font-weight:700;margin-bottom:12px}.sheikh-bio-text{font-size:.92rem;color:var(--text-medium);line-height:1.9}
 .recitations-list{padding:20px 24px}.recitations-list h4{font-size:1rem;color:var(--brown-dark);margin-bottom:16px;display:flex;align-items:center;gap:8px}.recitations-list h4 i{color:var(--gold-primary)}
-.rec-item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:var(--radius-md);background:var(--cream-primary);border:1.5px solid rgba(197,160,89,.15);margin-bottom:10px;transition:var(--transition);cursor:pointer}.rec-item:hover{background:rgba(197,160,89,.1);border-color:rgba(197,160,89,.4);transform:translateX(-2px)}.rec-item.playing{background:linear-gradient(135deg,rgba(197,160,89,.18),rgba(92,107,44,.1));border-color:var(--gold-primary);box-shadow:0 4px 16px rgba(197,160,89,.2)}
+.rec-item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:var(--radius-md);background:var(--cream-primary);border:1.5px solid rgba(197,160,89,.15);margin-bottom:10px;transition:var(--transition);cursor:pointer}.rec-item:hover{background:rgba(197,160,89,.15);border-color:rgba(197,160,89,.4);transform:translateX(-2px)}.rec-item.playing{background:linear-gradient(135deg,rgba(197,160,89,.18),rgba(92,107,44,.1));border-color:var(--gold-primary);box-shadow:0 4px 16px rgba(197,160,89,.2)}
 .rec-play-btn{width:40px;height:40px;border-radius:50%;background:var(--gold-gradient);color:var(--brown-dark);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;box-shadow:var(--shadow-gold);transition:var(--transition)}.rec-play-btn:hover{transform:scale(1.1)}.rec-play-btn.playing{background:var(--olive-primary);color:#fff}
 .rec-info{flex:1}.rec-name{font-size:.95rem;font-weight:700;color:var(--brown-dark)}.rec-riwaya{font-size:.8rem;color:var(--text-muted);margin-top:2px}
-.riwayat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}.riwaya-card{background:var(--cream-card);border-radius:var(--radius-lg);padding:20px 16px;text-align:center;border:1.5px solid rgba(197,160,89,.2);box-shadow:var(--shadow-sm);transition:var(--transition);cursor:pointer}.riwaya-card:hover,.riwaya-card.active{border-color:var(--gold-primary);background:rgba(197,160,89,.1);transform:translateY(-3px);box-shadow:0 6px 20px rgba(197,160,89,.3)}.riwaya-card .qari-name{font-family:'Scheherazade New',serif;font-size:1.1rem;color:var(--brown-dark);margin-bottom:6px}.riwaya-card .rawi-name{font-size:.82rem;color:var(--gold-primary);font-weight:700}
+.riwayat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}.riwaya-card{background:rgba(255,253,248,.25);backdrop-filter:blur(12px);border-radius:var(--radius-lg);padding:20px 16px;text-align:center;border:1px solid rgba(197,160,89,.4);box-shadow:0 4px 12px rgba(0,0,0,.1);transition:var(--transition);cursor:pointer}.riwaya-card:hover,.riwaya-card.active{border-color:var(--gold-primary);background:rgba(197,160,89,.2);transform:translateY(-5px);box-shadow:0 12px 28px rgba(197,160,89,.4)}.riwaya-card .qari-name{font-family:'Scheherazade New',serif;font-size:1.1rem;color:var(--brown-dark);margin-bottom:6px}.riwaya-card .rawi-name{font-size:.82rem;color:var(--gold-primary);font-weight:700}
 .audio-player-bar{position:fixed;bottom:0;right:0;left:0;z-index:800;background:linear-gradient(135deg,#2A1A0E,#1A0D08);border-top:2px solid rgba(197,160,89,.5);padding:12px 24px;display:none;align-items:center;gap:16px;box-shadow:0 -8px 32px rgba(0,0,0,.5)}.audio-player-bar.active{display:flex}
 .player-btn{width:40px;height:40px;border-radius:50%;background:var(--gold-gradient);color:var(--brown-dark);display:flex;align-items:center;justify-content:center;font-size:1rem;border:none;cursor:pointer;flex-shrink:0}.audio-player-bar .player-title-wrap{flex:1}.audio-player-bar .p-title{color:var(--gold-lighter);font-size:1rem;font-weight:700}.audio-player-bar .p-sub{color:rgba(255,255,255,.6);font-size:.82rem}.audio-player-bar audio{flex:2;height:36px}
 .player-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:.9rem;flex-shrink:0}.player-close:hover{background:rgba(255,255,255,.2);color:#fff}
@@ -67,6 +71,8 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit;transition
 .social-btn{width:40px;height:40px;border-radius:var(--radius-sm);background:rgba(255,255,255,.07);border:1px solid rgba(197,160,89,.25);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.65);font-size:1rem;transition:var(--transition)}.social-btn:hover{background:var(--gold-gradient);color:var(--brown-deep)}
 .floating-contact{position:fixed;bottom:80px;right:28px;z-index:500;display:flex;flex-direction:column;gap:10px}.float-btn{width:52px;height:52px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 6px 24px rgba(0,0,0,.3);transition:var(--transition)}.float-btn:hover{transform:scale(1.12)translateY(-3px)}.float-wa{background:#25D366;color:#fff}.float-tg{background:#229ED9;color:#fff}
 @media(max-width:768px){:root{--nav-h:68px}.nav-links{display:none;flex-direction:column;position:absolute;top:var(--nav-h);right:0;left:0;background:rgba(42,26,14,.99);padding:16px;gap:4px;border-bottom:1px solid rgba(197,160,89,.2);box-shadow:0 8px 24px rgba(0,0,0,.4)}.nav-links.open{display:flex}.nav-toggle{display:flex}.sheikh-detail-header{grid-template-columns:1fr}.sheikh-detail-img{height:180px}.filters-bar{flex-direction:column;align-items:flex-start}.search-input-wrap{max-width:100%;width:100%}.audio-player-bar{flex-direction:column;gap:8px;padding:12px 16px}.audio-player-bar audio{width:100%}.footer-bottom{flex-direction:column;text-align:center}}
+/* زخرفة فاصلة */
+.section-divider{display:flex;align-items:center;justify-content:center;gap:10px;margin:20px 0 30px}.section-divider span{flex:1;height:1px;background:rgba(197,160,89,.3)}.section-divider i{color:var(--gold-primary);font-size:.9rem}
 </style>
 </head>
 <body>
@@ -79,7 +85,7 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit;transition
 <div class="nav-cta"><a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-envelope"></i> تواصل</a><button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button></div>
 </div></nav>
 
-<!-- شريط الإعلانات - الآن بعد النافبار مباشرة -->
+<!-- شريط الإعلانات - بعد النافبار مباشرة -->
 <div class="announcements-bar" style="margin-top: var(--nav-h);"><div class="ticker">
 <span class="ticker-item"><i class="fas fa-headphones"></i> استمعي إلى تلاوات معلماتنا المتخصصات</span>
 <span class="ticker-item"><i class="fas fa-star"></i> مقرأة غِنديات – مكة المكرمة</span>
@@ -88,8 +94,9 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit;transition
 </div></div>
 
 <div class="page-hero"><div class="container">
-<div class="hero-badge" style="justify-content:center;margin-bottom:16px"><i class="fas fa-chalkboard-teacher"></i> المعلمات المتخصصات</div>
-<h1>معلمات مقرأة غِنديات</h1><div class="gold-divider"></div>
+<div class="hero-badge"><i class="fas fa-chalkboard-teacher"></i> المعلمات المتخصصات</div>
+<h1>معلمات <span class="typing-word">غِنديات</span></h1>
+<div class="gold-divider"></div>
 <p>نخبة مختارة من أفضل المعلمات في القراءات القرآنية والتجويد، اجتمعن ليقدّمن لكِ تجربة تعليمية لا مثيل لها</p>
 </div></div>
 
@@ -104,7 +111,11 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit;transition
 
 <div id="sheikhsList"><div style="text-align:center;padding:60px"><i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--gold-primary)"></i><p style="margin-top:16px">جاري تحميل المعلمات...</p></div></div>
 
-<div class="section-header" style="margin-top:64px"><div class="section-label">القراءات العشر المتواترة</div><h2>خريطة القراء والروايات</h2><div class="gold-divider"></div><p>انقري على أي رواية للاستماع إلى تلاوة قرآنية بها مباشرة</p></div>
+<div class="section-divider">
+  <span></span><i class="fas fa-star"></i><span></span>
+</div>
+
+<div class="section-header"><div class="section-label">القراءات العشر المتواترة</div><h2>خريطة القراء والروايات</h2><div class="gold-divider"></div><p>انقري على أي رواية لتشغيل تلاواتها من اليوتيوب مباشرة</p></div>
 <div class="riwayat-grid" id="riwayatGrid">
 <div class="riwaya-card" onclick="filterByRiwaya('نافع','قالون',this)"><div class="qari-name">نافع المدني</div><div class="rawi-name">رواية قالون</div></div>
 <div class="riwaya-card" onclick="filterByRiwaya('نافع','ورش',this)"><div class="qari-name">نافع المدني</div><div class="rawi-name">رواية ورش</div></div>
@@ -285,9 +296,9 @@ function filterByRiwaya(qari, rawi, card) {
     if (card) card.classList.add('active');
     renderSheikhs();
 
-    if (qari !== 'عاصم' || rawi !== 'حفص') {
-        window.open('https://www.mp3quran.net/eng?search=' + encodeURIComponent(qari + ' ' + rawi), '_blank');
-    }
+    var searchQuery = encodeURIComponent('تلاوة برواية ' + rawi + ' عن ' + qari);
+    var url = 'https://www.youtube.com/results?search_query=' + searchQuery;
+    window.open(url, '_blank');
 }
 
 function closePlayer() {
